@@ -1,9 +1,9 @@
 {
     "bot": {
-        "token": "hidden",
-        "id": "468507221052096522",
+        "token": process.env.BOT_TOKEN,
+        "id": "407593823921766410",
         "owners": [
-            "192060404501839872"
+            "259368804293935104"
         ]
     },
     "nadekoConnector": {
