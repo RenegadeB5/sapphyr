@@ -46,7 +46,7 @@ client.registry
 	])
 	.registerCommandsIn(path.join(__dirname, "commands"));
 
-client.login(config.bot.token);
+client.login(process.env.BOT_TOKEN);
 
 initializeServices(client);
 global.services = services;
