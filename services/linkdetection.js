@@ -9,8 +9,8 @@ module.exports = {
 	on: {
 		message: async function (message) {
                         let notes = message.content.split(" ");
-                        let args = notes.slice(0);
-			if (diepregex.test(args[0])) {
+                        let args = notes.slice(0); 
+                        if (diepregex.test(args[0])) {
 				let link = args[0];
 				let notes = args.slice(1).join(" ");
 				let linkchannel = message.guild.channels.find("name", "member-links")
