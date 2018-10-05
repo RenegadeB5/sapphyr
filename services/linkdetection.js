@@ -11,9 +11,9 @@ module.exports = {
                         let notes = message.content.split(" ");
                         let args = notes.slice(0); 
                         if (diepregex.test(args[0])) {
-				let link = args[0];
-				let notes = args.slice(1).join(" ");
-				let linkchannel = message.guild.channels.find("name", "member-links")
+                                let link = args[0];
+                                let notes = args.slice(1).join(" ");
+                                let linkchannel = message.guild.channels.find("name", "member-links")
                                 let embed = new Discord.RichEmbed()
                                 .setColor(0x00FF00)
                                 .setFooter('React with \"🔗\" to get the link.')
@@ -23,6 +23,7 @@ module.exports = {
                                 .setTimestamp()
                                 message.delete();
                                 linkchannel.send({embed}).then(function (message) {message.react('🔗')});
+			}
 		}
 	}
 };
