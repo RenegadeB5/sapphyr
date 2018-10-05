@@ -4,6 +4,7 @@
 	"description": "A community oriented Discord bot",
 	"main": "main.js",
 	"scripts": {
+		"start": "node bot.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "rjt",
