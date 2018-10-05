@@ -22,6 +22,7 @@ module.exports = {
                                 .addField("Notes", notes, true)
                                 .setTimestamp()
                                 message.delete();
+				console.log('test');
                                 linkchannel.send({embed}).then(function (message) {message.react('🔗')});
 			}
 		}
