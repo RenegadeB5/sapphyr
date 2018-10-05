@@ -5,6 +5,7 @@ module.exports = {
 	on: {
 		message: async function (message) {
 			if (message.channel.id === message.guild.channels.find("name", "art").id && message.attachments.size > 0)
+				console.log('test');
 				message.react("🔺");
 		}
 	}
