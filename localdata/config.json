@@ -1,6 +1,5 @@
 {
     "bot": {
-        "token": process.env.BOT_TOKEN,
         "id": "407593823921766410",
         "owners": [
             "259368804293935104"
