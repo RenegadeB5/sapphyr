@@ -1,7 +1,7 @@
 const fs = require("fs");
 const regex = require("/app/links.json");
 const diepregex = RegExp(regex.diep);
-const discord = require('discord.js');
+const Discord = require('discord.js');
 module.exports = {
 	name: "Link detection service",
 	description: "Creates an embed for party invites.",
