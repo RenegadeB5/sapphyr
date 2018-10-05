@@ -1,16 +1,28 @@
 const fs = require("fs");
 const regex = require("./links.json");
 const diepregex = RegExp(regex.diep);
+var { RichEmbed } = require('discord.js');
 module.exports = {
 	name: "Link detection service",
 	description: "Creates an embed for party invites.",
 	type: "event",
 	on: {
 		message: async function (message) {
-      let msgArray = msg.content.split(" ");
-      args = msgArray.slice(0);
-			if (message.channel.id === message.guild.channels.find("name", "art").id && message.attachments.size > 0)
-				message.react("🔺");
+                        let notes = message.content.split(" ");
+                        let args = notes.slice(0);
+			if (diepregex.test(args[0])) {
+				let link = args[0];
+				let notes = args.slice(1).join(" ");
+				let linkchannel = this.msg.guild.channels.find("name", "member-links")
+                                let embed = new Discord.RichEmbed()
+                                .setColor(0x00FF00)
+                                .setFooter('React with \"🔗\" to get the link.')
+                                .setTitle('Party invite')
+                                .setAuthor(message.member.user.tag)
+                                .addField("Notes", notes, true)
+                                .setTimestamp()
+                                message.delete();
+                                linkchannel.send({embed}).then(function (message) {message.react('🔗')});
 		}
 	}
 };
