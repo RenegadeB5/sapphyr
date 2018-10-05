@@ -4,7 +4,8 @@
 	"description": "A community oriented Discord bot",
 	"main": "main.js",
 	"scripts": {
-		"start": "node main.js"
+		"start": "node main.js",
+                "start": "node --no-deprecation main.js"
 	},
 	"author": "rjt",
 	"license": "MIT",
