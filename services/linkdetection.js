@@ -1,5 +1,5 @@
 const fs = require("fs");
-const regex = require("./links.json");
+const regex = require("sapphyr/links.json");
 const diepregex = RegExp(regex.diep);
 var { RichEmbed } = require('discord.js');
 module.exports = {
