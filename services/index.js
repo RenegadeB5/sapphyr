@@ -47,15 +47,6 @@ let events = [
 	"webhookUpdate"
 ];
 
-function callServiceEvent(event, args) {
-	services.forEach(service => {
-		if (typeof service.type === "undefined") return;
-		if (typeof service.type === "string" && service.type !== "event") return;
-		if (Array.isArray(service.type) && (service.type.includes("event") === false)) return;
-		if (typeof service.on[event] !== "undefined")
-			service.on[event](...args);
-	});
-}
 
 exports.initializeServices = async client => await Promise.all(services.map(async service => {
 	if (typeof service.initialize !== "undefined")
