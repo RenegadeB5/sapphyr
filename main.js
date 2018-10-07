@@ -13,6 +13,12 @@ var client = new commando.Client({
 	commandPrefix: "_"
 });
 
+var uri = "mongodb+srv://RenegadeB5:${process.env.dbpassword}@cluster0.mongodb.net/partylinks";
+MongoClient.connect(uri, function(err, client) {
+   const collection = client.db("partylinks").collection("links");
+   console.log('connected');
+   client.close();
+});
 
 client
 	.on("ready", () => {
