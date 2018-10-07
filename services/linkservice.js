@@ -8,6 +8,7 @@ module.exports = {
 				const dm = reaction.users.map(r => r.id);
 				const dmsend = dm[dm.length-1];
 				client.users.get(dmsend).send('link');
+			}
 		}
 	}
 };
