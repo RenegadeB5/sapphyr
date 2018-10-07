@@ -8,7 +8,6 @@ fs.readdirSync(__dirname + "/").forEach(filename => {
 
 	}
 });
-console.log(services);
 let events = [
 	"channelCreate",
 	"channelDelete",
