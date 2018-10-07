@@ -1,7 +1,7 @@
 var path = require("path");
 var config = require("./localdata/config.json");
 var commando = require("discord.js-commando");
-var MongoClient = require('mongodb').MongoClient;
+var MongoClient = require('commando-provider-mongo').MongoClient;
 var MongoDBProvider = require('commando-provider-mongo');
 var { initializeServices, services } = require("./services");
 
