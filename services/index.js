@@ -5,9 +5,9 @@ fs.readdirSync(__dirname + "/").forEach(filename => {
 	if (filename.match(/\.(js|json)$/) !== null && filename !== "index.js") {
 		let name = filename.replace(new RegExp(/\.js$/, "g"), "");
 		servicelist.push(require("./" + name));
-
 	}
 });
+console.log(servicelist);
 let events = [
 	"channelCreate",
 	"channelDelete",
