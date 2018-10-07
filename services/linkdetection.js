@@ -18,7 +18,7 @@ module.exports = {
 				.setColor(0x00FF00)
 				.setTitle('Party invite')
 				.addField('Notes', notes, true)
-				.addfield('Owner', message.member.user.tag, true)
+				.addField('Owner', message.member.user.tag, true)
 				.setTimestamp()
 				.setFooter('React with \"🔗\" to get the link.')
 				message.delete();
