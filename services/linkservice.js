@@ -7,6 +7,7 @@ module.exports = {
 			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '451417402119421952') {
 				const dm = reaction.users.map(r => r.id);
 				const dmsend = dm[dm.length-1];
+				let messageid = reaction.users.map(r => r.lastMessageID);
 				client.users.get(dmsend).send('link');
 			}
 		}
