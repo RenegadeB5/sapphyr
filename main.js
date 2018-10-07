@@ -15,7 +15,7 @@ var client = new commando.Client({
 
 var uri = "mongodb+srv://RenegadeB5:${process.env.dbpassword}@cluster0.mongodb.net/partylinks";
 MongoClient.connect(uri, function(err, client) {
-   const collection = client.db.partylinks;
+   const collection = db.partylinks;
    console.log('connected');
    client.close();
 });
