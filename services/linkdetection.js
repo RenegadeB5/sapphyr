@@ -16,13 +16,12 @@ module.exports = {
                                 let linkchannel = client.channels.get('451417402119421952')
                                 let embed = new Discord.RichEmbed()
                                 .setColor(0x00FF00)
-                                .setFooter('React with \"🔗\" to get the link.')
                                 .setTitle('Party invite')
-                                .setAuthor(message.member.user.tag)
-                                .addField("Notes", notes, true)
+                                .addField('Notes', notes, true)
+				.addfield('Owner', message.member.user.tag, true)
                                 .setTimestamp()
+				.setFooter('React with \"🔗\" to get the link.')
                                 message.delete();
-				console.log('test');
                                 linkchannel.send({embed}).then(function (message) {message.react('🔗')});
 			}
 		}
