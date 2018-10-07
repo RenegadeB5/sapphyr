@@ -59,8 +59,6 @@ function callServiceEvent(event, args) {
 
 exports.initializeServices = async client => await Promise.all(services.map(async service => {
 	console.log(typeof service.initialize);
-	if (typeof service.initialize !== "undefined")
-		await service.initialize(client);
 	for (let event of events)
 		client.on(event, (...args) => callServiceEvent(event, args));
 }));
