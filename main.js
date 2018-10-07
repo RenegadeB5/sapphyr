@@ -1,7 +1,7 @@
 var path = require("path");
 var config = require("./localdata/config.json");
 var commando = require("discord.js-commando");
-const { initializeServices, services } = require("./services");
+
 
 var client = new commando.Client({
 	owner: config.owners,
