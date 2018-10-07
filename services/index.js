@@ -65,4 +65,4 @@ exports.initializeServices = async client => await Promise.all(servicelist.map(a
 		client.on(event, (...args) => callServiceEvent(event, args));
 }));
 
-exports.services = services;
+exports.servicelist = servicelist;
