@@ -6,6 +6,7 @@ fs.readdirSync(__dirname + "/").forEach(filename => {
 		let name = filename.replace(new RegExp(/\.js$/, "g"), "");
 		services.push(require("./" + name));
 		console.log(services);
+		console.log(name);
 	}
 });
 let events = [
