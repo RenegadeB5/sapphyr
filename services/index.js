@@ -48,7 +48,7 @@ let events = [
 ];
 
 function callServiceEvent(event, args) {
-	services.forEach(service => {
+	servicelist.forEach(service => {
 		if (typeof service.type === "undefined") return;
 		if (typeof service.type === "string" && service.type !== "event") return;
 		if (Array.isArray(service.type) && (service.type.includes("event") === false)) return;
