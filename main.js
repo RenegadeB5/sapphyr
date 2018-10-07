@@ -47,6 +47,6 @@ client.registry
 	.registerCommandsIn(path.join(__dirname, "commands"));
 
 client.login(process.env.BOT_TOKEN);
-
 initializeServices(client);
+global.services = services;
 global.client = client;
