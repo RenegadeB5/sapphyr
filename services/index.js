@@ -7,7 +7,6 @@ fs.readdirSync(__dirname + "/").forEach(filename => {
 		services.push(require("./" + name));
 	}
 });
-console.log('test');
 let events = [
 	"channelCreate",
 	"channelDelete",
@@ -52,8 +51,7 @@ function callServiceEvent(event, args) {
 		if (typeof service.type === "undefined") return;
 		if (typeof service.type === "string" && service.type !== "event") return;
 		if (Array.isArray(service.type) && (service.type.includes("event") === false)) return;
-		if (typeof service.on[event] !== "undefined")
-			service.on[event](...args);
+		
 	});
 }
 
