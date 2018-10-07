@@ -19,6 +19,6 @@
 		"sharp": "^0.20.8",
 		"sqlite": "^3.0.0",
 		"then-fs": "^2.0.0",
-		"commando-provider-mongo": "1.0.0"
+		"commando-provider-mongo": "^1.0.0"
 	}
 }
