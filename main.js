@@ -17,6 +17,7 @@ var uri = "mongodb+srv://RenegadeB5:${process.env.dbpassword}@cluster0.mongodb.n
 MongoClient.connect(uri, function(err, client) {
    if (err) {
        console.error('An error occurred connecting to MongoDB: ', err);
+   }
    const collection = client.db("partylinks").collection("links");
    console.log('connected');
    client.close();
