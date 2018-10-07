@@ -61,7 +61,7 @@ exports.initializeServices = async client => await Promise.all(services.map(asyn
 	if (typeof service.initialize !== "undefined")
 		await service.initialize(client);
 	for (let event of events)
-		client.on((...args) => callServiceEvent(event, args));
+		client.on(event, (...args) => callServiceEvent(event, args));
 }));
 
 exports.services = services;
