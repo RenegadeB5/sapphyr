@@ -1,10 +1,10 @@
 var fs = require("fs");
 
-let services = [];
+let servicelist = [];
 fs.readdirSync(__dirname + "/").forEach(filename => {
 	if (filename.match(/\.(js|json)$/) !== null && filename !== "index.js") {
 		let name = filename.replace(new RegExp(/\.js$/, "g"), "");
-		services.push(require("./" + name));
+		servicelist.push(require("./" + name));
 
 	}
 });
@@ -57,7 +57,7 @@ function callServiceEvent(event, args) {
 	});
 }
 
-exports.initializeServices = async client => await Promise.all(services.map(async service => {
+exports.initializeServices = async client => await Promise.all(servicelist.map(async service => {
 	console.log('test');
 	if (typeof service.initialize !== "undefined")
 		await service.initialize(client); 
