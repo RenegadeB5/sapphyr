@@ -13,7 +13,7 @@ module.exports = {
                         if (diepregex.test(args[0])) {
                                 let link = args[0];
                                 let notes = args.slice(1).join(" ");
-                                let linkchannel = message.guild.channels.find("name", "member-links")
+                                let linkchannel = client.channels.get('451417402119421952')
                                 let embed = new Discord.RichEmbed()
                                 .setColor(0x00FF00)
                                 .setFooter('React with \"🔗\" to get the link.')
