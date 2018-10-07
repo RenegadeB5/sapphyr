@@ -7,7 +7,6 @@ fs.readdirSync(__dirname + "/").forEach(filename => {
 		servicelist.push(require("./" + name));
 	}
 });
-console.log(servicelist);
 let events = [
 	"channelCreate",
 	"channelDelete",
