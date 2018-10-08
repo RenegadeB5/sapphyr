@@ -21,7 +21,7 @@ module.exports = {
 					link = 'https://' + args[0];
 				}
 				let notes = args.slice(1).join(" ");
-				let linkchannel = client.channels.get('498732487816511488')
+				let linkchannel = client.channels.get('498736242905710592')
  				let embed = new Discord.RichEmbed()
 				.setColor(0x0000FF)
 				.setTitle(message.member.user.tag)
