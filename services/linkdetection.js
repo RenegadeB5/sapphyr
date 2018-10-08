@@ -39,7 +39,7 @@ module.exports = {
 						const collection = client.db("partylinks").collection("links");
 						collection.find(query).toArray(function(err, linkname) {
 							if (linkname[0].name === message.member.user.tag) {
-								message.channel.send('You already have a link posted. Use the linkclear command to remove it.');
+								message.channel.send('You already have a link posted. Use the clearlink command to remove it.');
 							}
 							else {
 								const insert = { name: message.member.user.tag, link: link };
@@ -47,7 +47,7 @@ module.exports = {
 									if (err) throw err;
 									console.log("link added to db");
 								});
-							client.close();
+								client.close();
 							}
 						}
 					}
