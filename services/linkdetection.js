@@ -47,9 +47,9 @@ module.exports = {
 									console.log("link added to db");
 									linkchannel.send({embed}).then(function (message) {message.react('🔗')});
 								});
-								client.close();
 							}
 						});
+						client.close();
 					}
 				});
 			}
