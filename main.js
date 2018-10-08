@@ -19,8 +19,13 @@ MongoClient.connect(uri, function(err, client) {
 		console.error('An error occurred connecting to MongoDB: ', err);
 	}
 	else {
+		var query = { partylinks: "https://diep.io" };
 		const collection = client.db("partylinks").collection("links");
-		console.log(collection);
+		collection.find(query).toArray(function(err, result) {
+ 			if (err) throw err;
+			console.log(result);
+			db.close();
+		});
 		client.close();
 	}
 });
