@@ -19,7 +19,7 @@
 		"sharp": "^0.20.8",
 		"sqlite": "^3.0.0",
 		"then-fs": "^2.0.0",
-		"mongodb": "^3.6.1",
+		"mongodb": "^3.1.6",
 		"mongodb-core": "^3.1.5",
 		"safe-buffer": "^5.1.2"
 	}
