@@ -17,7 +17,7 @@ module.exports = {
  				let embed = new Discord.RichEmbed()
 				.setColor(0x00FF00)
 				.setTitle(message.member.user.tag)
-				.addField('Party invite', true)
+				.addField('Party invite')
 				.addField('Notes', notes, true)
 				.setTimestamp()
 				.setFooter('React with \"🔗\" to get the link.')
