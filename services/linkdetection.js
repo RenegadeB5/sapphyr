@@ -8,15 +8,16 @@ module.exports = {
 	type: "event",
 	on: {
 		message: async function (message) {
+			let notes = message.content.split(" ");
 			let args = notes.slice(0);
 			if (message.author.bot) return;
 			if (message.channel.type === "dm") return;
 			if (diepregex.test(args[0])) {
-				let notes = args.slice(1).join(" ");
 				let link = args[0];
 				if (link.substr(0, 8) !== 'https://') {
 					link = 'https://' + args[0];
 				}
+				let notes = args.slice(1).join(" ");
 				if (notes.length < 1) {
 					notes = 'No informtion provided.'
 				}
