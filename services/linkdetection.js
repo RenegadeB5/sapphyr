@@ -49,7 +49,7 @@ module.exports = {
 								});
 								client.close();
 							}
-						}
+						});
 					}
 				});
 			}
