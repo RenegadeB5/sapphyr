@@ -35,13 +35,21 @@ module.exports = {
 						console.error('An error occurred connecting to MongoDB: ', err);
 					}
 					else {
-						const insert = { name: message.member.user.tag, link: link };
+						const query = { name: message.member.user.tag };
 						const collection = client.db("partylinks").collection("links");
-						collection.insertOne(insert, function(err, res) {
-							if (err) throw err;
-							console.log("link added to db");
-						});
-						client.close();
+						collection.find(query).toArray(function(err, linkname) {
+							if (linkname[0].name === message.member.user.tag) {
+								message.channel.send('You already have a link posted. Use the linkclear command to remove it.');
+							}
+							else {
+								const insert = { name: message.member.user.tag, link: link };
+								collection.insertOne(insert, function(err, res) {
+									if (err) throw err;
+									console.log("link added to db");
+								});
+							client.close();
+							}
+						}
 					}
 				});
 			}
