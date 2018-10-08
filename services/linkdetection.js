@@ -34,13 +34,13 @@ module.exports = {
 						console.error('An error occurred connecting to MongoDB: ', err);
 					}
 					else {
-						const query = { name: message.member.user.tag };
+						const query = { link: link };
 						const insert = { name: message.member.user.tag, link: link };
 						const collection = client.db("partylinks").collection("links");
 						collection.find(query).toArray(function(err, linkname) {
-							if ('RenegadeBB#4311' === message.member.user.tag) {
+							if (linkname) {
 								console.log(linkname);
-								message.channel.send('You already have a link posted. Use the clearlink command to remove it.').then(message => {message.delete(5000)});
+								message.channel.send('This link already exists').then(message => {message.delete(10000)});
 							}
 							else {
 								collection.insertOne(insert, function(err, res) {
