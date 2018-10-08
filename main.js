@@ -13,7 +13,7 @@ var client = new commando.Client({
 	commandPrefix: "_"
 });
 
-var uri = "mongodb+srv://RenegadeB5:Puppies##26@cluster0.mongodb.net/partylinks";
+var uri = "mongodb://RenegadeB5:Puppies##26@mycluster0-shard-00-00.mongodb.net:27017,mycluster0-shard-00-01.mongodb.net:27017,mycluster0-shard-00-02.mongodb.net:27017/admin?ssl=true&replicaSet=Mycluster0-shard-0&authSource=admin";
 MongoClient.connect(uri, function(err, client) {
 	if (err) {
 		console.error('An error occurred connecting to MongoDB: ', err);
