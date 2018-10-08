@@ -29,7 +29,6 @@ module.exports = {
 				.setFooter('React with 🔗 to get the link.')
 				.setTimestamp()
 				message.delete();
-				linkchannel.send({embed}).then(function (message) {message.react('🔗')});
 				global.MongoClient.connect(global.uri, function(err, client) {
 					if (err) {
 						console.error('An error occurred connecting to MongoDB: ', err);
@@ -46,6 +45,7 @@ module.exports = {
 								collection.insertOne(insert, function(err, res) {
 									if (err) throw err;
 									console.log("link added to db");
+									linkchannel.send({embed}).then(function (message) {message.react('🔗')});
 								});
 								client.close();
 							}
