@@ -16,9 +16,9 @@ module.exports = {
 				let linkchannel = client.channels.get('451417402119421952')
  				let embed = new Discord.RichEmbed()
 				.setColor(0x00FF00)
-				.setTitle('Party invite')
+				.setTitle(message.member.user.tag)
+				.addField('Party invite', true)
 				.addField('Notes', notes, true)
-				.addField('Owner', message.member.user.tag, true)
 				.setTimestamp()
 				.setFooter('React with \"🔗\" to get the link.')
 				message.delete();
