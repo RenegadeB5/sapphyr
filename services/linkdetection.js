@@ -25,24 +25,22 @@ module.exports = {
 				.setFooter('React with \"🔗\" to get the link.')
 				message.delete();
 				linkchannel.send({embed}).then(function (message) {message.react('🔗')});
+				var uri = "mongodb+srv://RenegadeB5:" + global.password + "@cluster0-l1qqw.mongodb.net/test?retryWrites=true";
+				MongoClient.connect(uri, function(err, client) {
+					if (err) {
+						console.error('An error occurred connecting to MongoDB: ', err);
+					}
+					else {
+						var insert = { link: message.member.user.tag + ' ' + link };
+						const collection = client.db("partylinks").collection("links");
+						collection.insertOne(insert, function(err, res) {
+							if (err) throw err;
+							console.log("link added to db");
+						});
+						client.close();
+					}
+				});
 			}
-			var user = message.member.user.tag
-			var link = args[0]
-			var uri = "mongodb+srv://RenegadeB5:" + global.password + "@cluster0-l1qqw.mongodb.net/test?retryWrites=true";
-			MongoClient.connect(uri, function(err, client) {
-				if (err) {
-					console.error('An error occurred connecting to MongoDB: ', err);
-				}
-				else {
-					var insert = { user: link };
-					const collection = client.db("partylinks").collection("links");
-					collection.insertOne(insert, function(err, res) {
-						if (err) throw err;
-						console.log("link added to db");
-					});
-					client.close();
-				}
-			});
 		}
 	}
 };
