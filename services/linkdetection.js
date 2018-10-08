@@ -27,7 +27,7 @@ module.exports = {
 						console.error('An error occurred connecting to MongoDB: ', err);
 					}
 					else {
-						const insert = { name: message.member.user.tag link: link };
+						const insert = { name: message.member.user.tag, link: link };
 						const collection = client.db("partylinks").collection("links");
 						collection.insertOne(insert, function(err, res) {
 							if (err) throw err;
