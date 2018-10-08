@@ -13,14 +13,15 @@ var client = new commando.Client({
 	commandPrefix: "_"
 });
 
-var uri = "mongodb://cluster0-shard-00-00-l1qqw.mongodb.net:27017,cluster0-shard-00-01-l1qqw.mongodb.net:27017,cluster0-shard-00-02-l1qqw.mongodb.net:27017/partylinks?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true";
+var uri = "mongodb+srv://RenegadeB5:${process.env.dbpassword}@cluster0.mongodb.net/partylinks";
 MongoClient.connect(uri, function(err, client) {
-   if (err) {
-       console.error('An error occurred connecting to MongoDB: ', err);
-   }
-   const collection = client.db("partylinks").collection("links");
-   console.log('connected');
-   client.close();
+	if (err) {
+		console.error('An error occurred connecting to MongoDB: ', err);
+	}
+	else {
+		const collection = client.db("partylinks").collection("links");
+		console.log('connected');
+		client.close();
 });
 
 client
