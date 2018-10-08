@@ -19,8 +19,8 @@ MongoClient.connect(uri, function(err, client) {
 		console.error('An error occurred connecting to MongoDB: ', err);
 	}
 	else {
-		const collection = client.db("partylinks");
-		console.log('connected');
+		const collection = client.db("partylinks").collection("links");
+		console.log(collection);
 		client.close();
 	}
 });
