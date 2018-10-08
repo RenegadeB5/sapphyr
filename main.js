@@ -19,11 +19,11 @@ MongoClient.connect(uri, function(err, client) {
 		console.error('An error occurred connecting to MongoDB: ', err);
 	}
 	else {
-		var query = { partylinks: "https://diep.io" };
+		var query = { partylink: "https://diep.io" };
 		const collection = client.db("partylinks").collection("links");
 		collection.find(query).toArray(function(err, result) {
  			if (err) throw err;
-			console.log(result[0]);
+			console.log((result[0])["partylink"]);
 		});
 		client.close();
 	}
