@@ -24,7 +24,7 @@ module.exports = {
 							const collection = client.db("partylinks").collection("links");
 							collection.find(query).toArray(function(err, result) {
 								if (err) throw err;
-								console.log(typeof result);
+								console.log(result.link);
 							});
 							client.close();
 						}
