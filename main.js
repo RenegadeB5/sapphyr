@@ -24,7 +24,6 @@ MongoClient.connect(uri, function(err, client) {
 		collection.find(query).toArray(function(err, result) {
  			if (err) throw err;
 			console.log(result);
-			db.close();
 		});
 		client.close();
 	}
