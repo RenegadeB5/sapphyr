@@ -23,7 +23,7 @@ MongoClient.connect(uri, function(err, client) {
 		const collection = client.db("partylinks").collection("links");
 		collection.find(query).toArray(function(err, result) {
  			if (err) throw err;
-			console.log((result[0])[2]);
+			console.log((result[0])[1]);
 		});
 		client.close();
 	}
