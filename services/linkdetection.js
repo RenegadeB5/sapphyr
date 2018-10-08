@@ -38,7 +38,7 @@ module.exports = {
 						const insert = { name: message.member.user.tag, link: link };
 						const collection = client.db("partylinks").collection("links");
 						collection.find(query).toArray(function(err, linkname) {
-							if (link === link) {
+							if (link !== link) {
 								message.channel.send('This link already exists.').then(message => {message.delete(10000)});
 							}
 							else {
