@@ -28,27 +28,19 @@ module.exports = {
 				.addField('Party invite', notes)
 				.setFooter('React with 🔗 to get the link.')
 				.setTimestamp()
-				message.delete();
 				global.MongoClient.connect(global.uri, function(err, client) {
 					if (err) {
 						console.error('An error occurred connecting to MongoDB: ', err);
 					}
 					else {
-						const query = { link: link }
 						const insert = { name: message.member.user.tag, link: link };
 						const collection = client.db("partylinks").collection("links");
-						collection.find(query).toArray(function(err, result) {
-							if (result.keys(link).length > 0) {
-								message.channel.send('This link already exists.').then(message => {message.delete(5000)});
-							}
-							else {
-								collection.insertOne(insert, function(err, res) {
-									if (err) throw err;
-									console.log("link added to db");
-									linkchannel.send({embed}).then(function (message) {message.react('🔗')});
-									message.channel.send('Your link has successfully been added to the database.').then(message => {message.delete(5000)});
-								});
-							}
+						collection.insertOne(insert, function(err, res) {
+							if (err) throw err;
+							message.delete();
+							console.log("link added to db");
+							linkchannel.send({embed}).then(function (message) {message.react('🔗')});
+							message.channel.send('Your link has successfully been posted.').then(message => {message.delete(5000)});
 						});
 						client.close();
 					}
