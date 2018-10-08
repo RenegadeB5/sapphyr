@@ -19,7 +19,7 @@ module.exports = class ClearLinkCommand extends Command {
 				const collection = client.db("partylinks").collection("links");
 				collection.deleteOne(query, function(err, result) {
 				    console.log('link removed from db');
-                    msg.channel.send('Your link has been successfully removed.').then(message => {message.delete(5000)});
+                    msg.channel.send('Your link has successfully been removed from the database.').then(message => {message.delete(5000)});
 			    });
 		    	client.close();
 			}
