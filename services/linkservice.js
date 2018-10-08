@@ -23,7 +23,6 @@ module.exports = {
 							const query = { name: loguser };
 							const collection = client.db("partylinks").collection("links");
 							collection.find(query).toArray(function(err, result) {
-								if (err) throw err;
 								global.client.users.get(dmsend).send(result[0].link);
 							});
 							client.close();
