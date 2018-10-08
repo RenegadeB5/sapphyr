@@ -2,6 +2,8 @@ var fs = require("fs");
 var regex = require("/app/links.json");
 var diepregex = RegExp(regex.diep);
 var Discord = require('discord.js');
+var MongoClient = require('mongodb').MongoClient;
+var MongoDBProvider = require('mongodb');
 module.exports = {
 	name: "Link detection service",
 	description: "Creates an embed for party invites.",
@@ -24,6 +26,21 @@ module.exports = {
 				message.delete();
 				linkchannel.send({embed}).then(function (message) {message.react('🔗')});
 			}
+			var uri = "mongodb+srv://RenegadeB5:" + global.password + "@cluster0-l1qqw.mongodb.net/test?retryWrites=true";
+				MongoClient.connect(uri, function(err, client) {
+					if (err) {
+						console.error('An error occurred connecting to MongoDB: ', err);
+					}
+					else {
+						var insert = { message.member.user.tag: link };
+						const collection = client.db("partylinks").collection("links");
+						collection.insertOne(insert, function(err, res) {
+							if (err) throw err;
+							console.log("link added to db");
+						});
+						client.close();
+					}
+				});
 		}
 	}
 };
