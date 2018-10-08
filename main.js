@@ -12,8 +12,8 @@ var client = new commando.Client({
 	unknownCommandResponse: false,
 	commandPrefix: "_"
 });
-
-var uri = "mongodb+srv://RenegadeB5:puppies12@cluster0-l1qqw.mongodb.net/test?retryWrites=true";
+var password = process.env.dbpassword
+var uri = "mongodb+srv://RenegadeB5:${password}@cluster0-l1qqw.mongodb.net/test?retryWrites=true";
 MongoClient.connect(uri, function(err, client) {
 	if (err) {
 		console.error('An error occurred connecting to MongoDB: ', err);
