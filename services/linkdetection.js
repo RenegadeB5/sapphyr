@@ -38,7 +38,7 @@ module.exports = {
 						const collection = client.db("partylinks").collection("links");
 						collection.find(query).toArray(function(err, linkname) {
 							if (linkname[0].name === message.member.user.tag) {
-								message.channel.send('You already have a link posted. Use the clearlink command to remove it.');
+								message.channel.send('You already have a link posted. Use the clearlink command to remove it.').then(setTimeout(function (message) {message.delete()}, 5000));
 							}
 							else {
 								const insert = { name: message.member.user.tag, link: link };
