@@ -5,12 +5,12 @@ module.exports = {
 	on: {
 		messageReactionAdd: async function (reaction) {
 			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '451417402119421952') {
-				if (reaction.users.map(r => r.id) === '407593823921766410') {
+				const dm = reaction.users.map(r => r.id);
+				const dmsend = dm[dm.length-1];
+				if (dmsend === '407593823921766410') {
 					return;
 				}
 				else {
-					const dm = reaction.users.map(r => r.id);
-					const dmsend = dm[dm.length-1];
 					const log1 = reaction.users.map(r => r.username)
 					const log2 = reaction.users.map(r => r.discriminator)
 					const loguser = log1[log1.length-1] + '#' + log2[log2.length-1]
