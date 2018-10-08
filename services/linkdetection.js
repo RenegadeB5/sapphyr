@@ -15,10 +15,10 @@ module.exports = {
 			if (diepregex.test(args[0])) {
 				let link = args[0];
 				if (link.substr(0, 8) === 'https://') {
-					let link = args[0];
+					link = args[0];
 				}
 				else {
-					let link = 'https://' + args[0];
+					link = 'https://' + args[0];
 				}
 				let notes = args.slice(1).join(" ");
 				let linkchannel = client.channels.get('451417402119421952')
