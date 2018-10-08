@@ -4,6 +4,7 @@ var commando = require("discord.js-commando");
 var MongoClient = require('mongodb').MongoClient;
 var MongoDBProvider = require('mongodb');
 var { initializeServices, services } = require("./services");
+var password = process.env.dbpassword;
 
 var client = new commando.Client({
 	owner: config.owners,
@@ -53,4 +54,4 @@ global.services = services;
 global.client = client;
 global.MongoClient = MongoClient;
 global.MongoDBProvider = MongoDBProvider;
-global.password = process.env.dbpassword;
+global.uri = "mongodb+srv://RenegadeB5:" + password + "@cluster0-l1qqw.mongodb.net/test?retryWrites=true";
