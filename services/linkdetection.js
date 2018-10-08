@@ -22,7 +22,6 @@ module.exports = {
 				.setTimestamp()
 				message.delete();
 				linkchannel.send({embed}).then(function (message) {message.react('🔗')});
-				var uri = "mongodb+srv://RenegadeB5:" + global.password + "@cluster0-l1qqw.mongodb.net/test?retryWrites=true";
 				global.MongoClient.connect(uri, function(err, client) {
 					if (err) {
 						console.error('An error occurred connecting to MongoDB: ', err);
