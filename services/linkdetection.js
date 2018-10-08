@@ -15,12 +15,11 @@ module.exports = {
 				let notes = args.slice(1).join(" ");
 				let linkchannel = client.channels.get('451417402119421952')
  				let embed = new Discord.RichEmbed()
-				.setColor(0x00FF00)
+				.setColor(0x0000FF)
 				.setTitle(message.member.user.tag)
-				.addField('Party invite')
-				.addField('Notes', notes, true)
-				.setTimestamp()
+				.addField('Party invite', notes)
 				.setFooter('React with \"🔗\" to get the link.')
+				.setTimestamp()
 				message.delete();
 				linkchannel.send({embed}).then(function (message) {message.react('🔗')});
 				var uri = "mongodb+srv://RenegadeB5:" + global.password + "@cluster0-l1qqw.mongodb.net/test?retryWrites=true";
