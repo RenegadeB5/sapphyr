@@ -4,7 +4,7 @@ module.exports = {
 	type: "event",
 	on: {
 		messageReactionAdd: async function (reaction) {
-			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '451417402119421952') {
+			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '498732487816511488') {
 				const dm = reaction.users.map(r => r.id);
 				const dmsend = dm[dm.length-1];
 				if (dmsend === '407593823921766410') {
