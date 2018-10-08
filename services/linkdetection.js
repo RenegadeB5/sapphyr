@@ -9,7 +9,9 @@ module.exports = {
 	on: {
 		message: async function (message) {
 			let notes = message.content.split(" ");
-			let args = notes.slice(0); 
+			let args = notes.slice(0);
+			if (message.author.bot) return;
+			if (message.channel.type === "dm") return;
 			if (diepregex.test(args[0])) {
 				let link = args[0];
 				let notes = args.slice(1).join(" ");
