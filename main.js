@@ -12,7 +12,7 @@ var client = new commando.Client({
 	unknownCommandResponse: false,
 	commandPrefix: "_"
 });
-var password = process.env.dbpassword
+const password = process.env.dbpassword
 var uri = "mongodb+srv://RenegadeB5:" + password + "@cluster0-l1qqw.mongodb.net/test?retryWrites=true";
 MongoClient.connect(uri, function(err, client) {
 	if (err) {
