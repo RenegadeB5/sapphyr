@@ -1,16 +1,28 @@
 var { Command } = require("discord.js-commando");
-module.exports = class PingCommand extends Command {
+module.exports = class ClearLinkCommand extends Command {
     constructor(client) {
         super(client, {
-            name: "ping",
-            description: "Checks the bot's ping.",
+            name: "clearlink",
+            description: "Removes the users current party link from the database",
             group: "basics",
-            memberName: "ping"
+            memberName: "clearlink"
         });
     }
-
+    
     async run(msg) {
-        let pingMsg = await msg.channel.send("🔁 | Pinging ...");
-        return await pingMsg.edit(`✅ | ${pingMsg.createdTimestamp - msg.createdTimestamp}ms.`);
+        global.MongoClient.connect(global.uri, function(err, client) {
+            if (err) {
+                console.error('An error occurred connecting to MongoDB: ', err);
+			}
+			else {
+				const query = { name: msg.member.user.tag };
+				const collection = client.db("partylinks").collection("links");
+				collection.deleteOne(query, function(err, result) {
+				    console.log('link removed from db');
+                    msg.channel.send('Your link has been successfully removed.').then(message => {message.delete(5000)});
+			    });
+		    	client.close();
+			}
+        });
     }
 };
