@@ -14,11 +14,11 @@ module.exports = {
 			if (message.channel.type === "dm") return;
 			if (diepregex.test(args[0])) {
 				let link = args[0];
-				if (link.substr(0, 8) === 'https://') {
-					link = args[0];
-				}
-				else {
+				if (link.substr(0, 8) !== 'https://') {
 					link = 'https://' + args[0];
+				}
+				if (notes.length < 1) {
+					notes = 'No informtion provided.'
 				}
 				let notes = args.slice(1).join(" ");
 				let linkchannel = client.channels.get('498736242905710592')
@@ -34,13 +34,21 @@ module.exports = {
 						console.error('An error occurred connecting to MongoDB: ', err);
 					}
 					else {
+						const query = { link: link }
 						const insert = { name: message.member.user.tag, link: link };
 						const collection = client.db("partylinks").collection("links");
-						collection.insertOne(insert, function(err, res) {
-							if (err) throw err;
-							console.log("link added to db");
-							linkchannel.send({embed}).then(function (message) {message.react('🔗')});
-							message.channel.send('Your link has successfully been added to the database.').then(message => {message.delete(5000)});
+						collection.find(query).toArray(function(err, result) {
+							if (result.keys(link).length > 0) {
+								message.channel.send('This link already exists.').then(message => {message.delete(5000)});
+							}
+							else {
+								collection.insertOne(insert, function(err, res) {
+									if (err) throw err;
+									console.log("link added to db");
+									linkchannel.send({embed}).then(function (message) {message.react('🔗')});
+									message.channel.send('Your link has successfully been added to the database.').then(message => {message.delete(5000)});
+								});
+							}
 						});
 						client.close();
 					}
