@@ -21,7 +21,7 @@ module.exports = {
 				.setFooter('React with 🔗 to get the link.')
 				.setTimestamp()
 				message.delete();
-				linkchannel.send({embed}).then(function (message) {message.react('🔗')}); \\ 66666
+				linkchannel.send({embed}).then(function (message) {message.react('🔗')});
 				var uri = "mongodb+srv://RenegadeB5:" + global.password + "@cluster0-l1qqw.mongodb.net/test?retryWrites=true";
 				global.MongoClient.connect(uri, function(err, client) {
 					if (err) {
