@@ -12,22 +12,6 @@ var client = new commando.Client({
 	unknownCommandResponse: false,
 	commandPrefix: "_"
 });
-const password = process.env.dbpassword
-var uri = "mongodb+srv://RenegadeB5:" + password + "@cluster0-l1qqw.mongodb.net/test?retryWrites=true";
-MongoClient.connect(uri, function(err, client) {
-	if (err) {
-		console.error('An error occurred connecting to MongoDB: ', err);
-	}
-	else {
-		var insert = { partylink1: "https://diep.io" };
-		const collection = client.db("partylinks").collection("links");
-		collection.insertOne(insert, function(err, res) {
-			if (err) throw err;
-			console.log("1 document inserted");
-		});
-		client.close();
-	}
-});
 
 client
 	.on("ready", () => {
