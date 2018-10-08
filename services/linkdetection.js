@@ -18,7 +18,7 @@ module.exports = {
 				.setColor(0x0000FF)
 				.setTitle(message.member.user.tag)
 				.addField('Party invite', notes)
-				.setFooter('React with \"🔗\" to get the link.')
+				.setFooter('React with 🔗 to get the link.')
 				.setTimestamp()
 				message.delete();
 				linkchannel.send({embed}).then(function (message) {message.react('🔗')});
