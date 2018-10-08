@@ -12,7 +12,7 @@ module.exports = {
 			if (message.author.bot) return;
 			if (message.channel.type === "dm") return;
 			if (diepregex.test(args[0])) {
-				let notes = message.content.split(" ");
+				let notes = args.slice(1).join(" ");
 				let link = args[0];
 				if (link.substr(0, 8) !== 'https://') {
 					link = 'https://' + args[0];
@@ -20,7 +20,6 @@ module.exports = {
 				if (notes.length < 1) {
 					notes = 'No informtion provided.'
 				}
-				let notes = args.slice(1).join(" ");
 				let linkchannel = client.channels.get('498736242905710592')
  				let embed = new Discord.RichEmbed()
 				.setColor(0x0000FF)
