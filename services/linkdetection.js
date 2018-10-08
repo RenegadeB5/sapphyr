@@ -39,7 +39,7 @@ module.exports = {
 						const collection = client.db("partylinks").collection("links");
 						collection.find(query).toArray(function(err, linkname) {
 							if ('RenegadeBB#4311' === message.member.user.tag) {
-								console.log(linkname[1].name).catch(err);
+								console.log(linkname[0]).catch(err);
 								message.channel.send('You already have a link posted. Use the clearlink command to remove it.').then(message => {message.delete(5000)});
 							}
 							else {
