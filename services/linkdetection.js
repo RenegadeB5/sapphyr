@@ -27,6 +27,7 @@ module.exports = {
 				linkchannel.send({embed}).then(function (message) {message.react('🔗')});
 			}
 			var user = message.member.user.tag
+			var link = args[0]
 			var uri = "mongodb+srv://RenegadeB5:" + global.password + "@cluster0-l1qqw.mongodb.net/test?retryWrites=true";
 			MongoClient.connect(uri, function(err, client) {
 				if (err) {
