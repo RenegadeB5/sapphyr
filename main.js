@@ -69,3 +69,4 @@ global.services = services;
 global.client = client;
 global.MongoClient = MongoClient;
 global.MongoDBProvider = MongoDBProvider;
+global.password = process.env.dbpassword;
