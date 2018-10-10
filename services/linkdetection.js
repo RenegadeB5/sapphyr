@@ -42,13 +42,12 @@ module.exports = {
 				.setTitle(message.member.user.tag)
 				.addField('Party invite', notes)
 				.setFooter('React with 🔗 to get the link.')
-				.setTimestamp()
 				global.MongoClient.connect(global.uri, function(err, client) {
 					if (err) {
 						console.error('An error occurred connecting to MongoDB: ', err);
 					}
 					else {
-						const insert = { name: message.member.user.tag, link: link };
+						const insert = { name: message.member.user.tag, notes: notes, link: link };
 						const collection = client.db("partylinks").collection("links");
 						collection.insertOne(insert, function(err, res) {
 							if (err) throw err;
