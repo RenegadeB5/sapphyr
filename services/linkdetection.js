@@ -26,6 +26,7 @@ module.exports = {
 						client.close();
 					}
 				});
+			}
 			let notes = message.content.split(" ");
 			let args = notes.slice(0);
 			if (message.author.bot) return;
