@@ -8,6 +8,24 @@ module.exports = {
 	type: "event",
 	on: {
 		message: async function (message) {
+			function clearLink () {
+				global.MongoClient.connect(global.uri, function(err, client) {
+					if (err) {
+						console.error('An error occurred connecting to MongoDB: ', err);
+					}
+					else {
+						const collection = client.db("partylinks").collection("links");
+						collection.find({}).toArray(function(err, result) {
+							if (err) throw err;
+							const query = { name: result[result.length-1].link }
+							collection.deleteOne(query, function(err, obj) {
+								if (err) throw err;
+  								console.log("1 link cleared");
+							});
+						});
+						client.close();
+					}
+				});
 			let notes = message.content.split(" ");
 			let args = notes.slice(0);
 			if (message.author.bot) return;
@@ -41,6 +59,7 @@ module.exports = {
 							console.log("link added to db");
 							linkchannel.send({embed}).then(function (message) {message.react('🔗')});
 							message.channel.send('Your link has successfully been posted.').then(message => {message.delete(5000)});
+							setInterval(clearLink, 10000);
 						});
 						client.close();
 					}
