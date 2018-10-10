@@ -15,14 +15,9 @@ module.exports = {
 					}
 					else {
 						const collection = client.db("partylinks").collection("links");
-						collection.find({}).toArray(function(err, result) {
+						collection.findOneAndDelete({}, function(err, obj) {
 							if (err) throw err;
-							const collection = client.db("partylinks").collection("links");
-							const query = { name: result[result.length-1].link }
-							collection.deleteOne(query, function(err, obj) {
-								if (err) throw err;
-  								console.log("1 link cleared");
-							});
+  							console.log("1 link cleared");
 						});
 						client.close();
 					}
