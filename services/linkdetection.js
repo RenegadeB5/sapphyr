@@ -17,6 +17,7 @@ module.exports = {
 						const collection = client.db("partylinks").collection("links");
 						collection.find({}).toArray(function(err, result) {
 							if (err) throw err;
+							const collection = client.db("partylinks").collection("links");
 							const query = { name: result[result.length-1].link }
 							collection.deleteOne(query, function(err, obj) {
 								if (err) throw err;
