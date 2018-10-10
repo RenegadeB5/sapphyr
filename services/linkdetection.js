@@ -17,7 +17,7 @@ module.exports = {
 						const collection = client.db("partylinks").collection("links");
 						collection.findOneAndDelete({}, function(err, obj) {
 							if (err) throw err;
-  							console.log("1 link cleared");
+  							console.log("1 link cleared" + obj);
 						});
 						client.close();
 					}
