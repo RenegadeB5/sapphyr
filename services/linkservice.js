@@ -29,7 +29,7 @@ module.exports = {
 							.setColor(0x0000FF)
 							.setTitle(user)
 							.addField('Party invite', result[result.length-1].notes)
-							.addField('Members', members)
+							.addField('Members', members + '\n' + user)
 							.setFooter('React with 🔗 to get the link.')
 							reaction.message.edit({embed});        
 						});
