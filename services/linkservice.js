@@ -13,7 +13,7 @@ module.exports = {
 				const discrim = reaction.users.map(r => r.discriminator)
 				const user = name[name.length-1] + '#' + discrim[discrim.length-1]
 				const messageid = reaction.users.map(r => r.lastMessageID);
-				reaction.message.embeds.forEach((embed) => {console.log(embed.fields.map(r => r.value))});
+				console.log(reaction.message.embeds.fields.map(r => r.value));
 				global.MongoClient.connect(global.uri, function(err, client) {
 					if (err) {
 						console.error('An error occurred connecting to MongoDB: ', err);
