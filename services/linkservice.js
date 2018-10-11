@@ -28,11 +28,11 @@ module.exports = {
 								reaction.message.delete();
 							}
 							else {
-								global.client.users.get(dmsend).send(result[result.length-1].link);
+								global.client.users.get(dmsend).send(result[0].link);
 								let embed = new Discord.RichEmbed()
 								.setColor(0x0000FF)
 								.setTitle(user)
-								.addField('Party invite', result[0].notes)
+								.addField('Party invite', result[result.length-1].notes))
 								.addField('Members', members + '\n' + user)
 								.setFooter('React with 🔗 to get the link.')
 								reaction.message.edit({embed});  
