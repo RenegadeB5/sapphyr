@@ -8,26 +8,26 @@ module.exports = {
 	type: "event",
 	on: {
 		message: async function (message) {
-			function clearLink () {
-				global.MongoClient.connect(global.uri, function(err, client) {
-					if (err) {
-						console.error('An error occurred connecting to MongoDB: ', err);
-					}
-					else {
-						const collection = client.db("partylinks").collection("links");
-						collection.findOneAndDelete({}, function(err, obj) {
-							if (err) throw err;
-  							console.log("1 link cleared" + obj);
-						});
-						client.close();
-					}
-				});
-			}
 			let notes = message.content.split(" ");
 			let args = notes.slice(0);
 			if (message.author.bot) return;
 			if (message.channel.type === "dm") return;
 			if (diepregex.test(args[0])) {
+				function clearLink () {
+					global.MongoClient.connect(global.uri, function(err, client) {
+						if (err) {
+							console.error('An error occurred connecting to MongoDB: ', err);
+						}
+						else {
+							const collection = client.db("partylinks").collection("links");
+							collection.findOneAndDelete({}, function(err, obj) {
+								if (err) throw err;
+  								console.log("1 link cleared" + obj);
+							});
+							client.close();
+						}
+					});
+				}
 				let link = args[0];
 				if (link.substr(0, 8) !== 'https://') {
 					link = 'https://' + args[0];
