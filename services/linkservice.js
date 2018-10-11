@@ -23,7 +23,7 @@ module.exports = {
 						const query = { name: user };
 						const collection = client.db("partylinks").collection("links");
 						collection.find(query).toArray(function(err, result) {
-							if ((result[result.length-1].link).length === 0) {
+							if (typeof result[result.length-1].link === 'undefined') {
 								global.client.users.get(dmsend).send('Sorry, this invite link is no longer avalable.');
 								reaction.message.delete();
 							}
