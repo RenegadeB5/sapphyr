@@ -8,14 +8,13 @@ module.exports = {
 			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '498736242905710592') {
 				const dm = reaction.users.map(r => r.id);
 				const dmsend = dm[dm.length-1];
-				if (dmsend === '407593823921766410') return;
 				const name = reaction.users.map(r => r.username)
 				const discrim = reaction.users.map(r => r.discriminator)
 				const user = name[name.length-1] + '#' + discrim[discrim.length-1]
 				const messageid = reaction.users.map(r => r.lastMessageID);
 				const list = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0]
 				const members = list[1, list.length-1]
-				console.log(members);
+				if (dmsend === '407593823921766410') return;
 				global.MongoClient.connect(global.uri, function(err, client) {
 					if (err) {
 						console.error('An error occurred connecting to MongoDB: ', err);
