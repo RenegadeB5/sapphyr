@@ -28,7 +28,7 @@ module.exports = {
 								reaction.message.delete();
 							}
 							else {
-								global.client.users.get(dmsend).send(result[0].link);
+								global.client.users.get(dmsend).send(result[result.length-1].link);
 								let embed = new Discord.RichEmbed()
 								.setColor(0x0000FF)
 								.setTitle(user)
