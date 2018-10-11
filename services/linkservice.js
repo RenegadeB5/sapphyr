@@ -28,7 +28,7 @@ module.exports = {
 							.setTitle(user)
 							.addField('Party invite', result[result.length-1].notes)
 							.setFooter('React with 🔗 to get the link.')
-							reaction.channel.fetchMessage(messageid).then(message =>message.edit({embed}));        
+							reaction.message.channel.fetchMessage(messageid).then(message =>message.edit({embed}));        
 						});
 						client.close();
 					}
