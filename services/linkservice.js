@@ -23,14 +23,20 @@ module.exports = {
 						const query = { name: user };
 						const collection = client.db("partylinks").collection("links");
 						collection.find(query).toArray(function(err, result) {
-							global.client.users.get(dmsend).send(result[result.length-1].link);
-							let embed = new Discord.RichEmbed()
-							.setColor(0x0000FF)
-							.setTitle(user)
-							.addField('Party invite', result[result.length-1].notes)
-							.addField('Members', members + '\n' + user)
-							.setFooter('React with 🔗 to get the link.')
-							reaction.message.edit({embed});        
+							if (err) {
+								global.client.users.get(dmsend).send('Sorry, this invite link is no longer avalable.');
+								reaction.message.delete();
+							}
+							else {
+								global.client.users.get(dmsend).send(result[result.length-1].link);
+								let embed = new Discord.RichEmbed()
+								.setColor(0x0000FF)
+								.setTitle(user)
+								.addField('Party invite', result[result.length-1].notes)
+								.addField('Members', members + '\n' + user)
+								.setFooter('React with 🔗 to get the link.')
+								reaction.message.edit({embed});  
+							}
 						});
 						client.close();
 					}
