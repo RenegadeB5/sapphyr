@@ -32,7 +32,7 @@ module.exports = {
 								let embed = new Discord.RichEmbed()
 								.setColor(0x0000FF)
 								.setTitle(user)
-								.addField('Party invite', result[result.length-1].notes)
+								.addField('Party invite', result[0].notes)
 								.addField('Members', members + '\n' + user)
 								.setFooter('React with 🔗 to get the link.')
 								reaction.message.edit({embed});  
