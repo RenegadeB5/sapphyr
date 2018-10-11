@@ -15,7 +15,7 @@ module.exports = {
 				const messageid = reaction.users.map(r => r.lastMessageID);
 				const list = reaction.message.embeds.map(r => r.fields.map(r => r.value))
 				const members = list[list.length-1]
-				console.log(members);
+				console.log(list);
 				global.MongoClient.connect(global.uri, function(err, client) {
 					if (err) {
 						console.error('An error occurred connecting to MongoDB: ', err);
