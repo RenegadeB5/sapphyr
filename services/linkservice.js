@@ -14,7 +14,7 @@ module.exports = {
 				const user = name[name.length-1] + '#' + discrim[discrim.length-1]
 				const messageid = reaction.users.map(r => r.lastMessageID);
 				const list = reaction.message.embeds.map(r => r.fields.map(r => r.value))
-				const members = list[1, list.length-1]
+				const members = list[list.length-1]
 				console.log(members);
 				global.MongoClient.connect(global.uri, function(err, client) {
 					if (err) {
