@@ -41,6 +41,7 @@ module.exports = {
 				.setColor(0x0000FF)
 				.setTitle(message.member.user.tag)
 				.addField('Party invite', notes)
+				.addField('Members', message.member.user.tag)
 				.setFooter('React with 🔗 to get the link.')
 				global.MongoClient.connect(global.uri, function(err, client) {
 					if (err) {
