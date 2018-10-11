@@ -29,8 +29,9 @@ module.exports = {
 							.setColor(0x0000FF)
 							.setTitle(user)
 							.addField('Party invite', result[result.length-1].notes)
+							.addField('Members', members)
 							.setFooter('React with 🔗 to get the link.')
-							reaction.message.channel.fetchMessage(messageid).then(message =>message.edit({embed}));        
+							reaction.message.edit({embed});        
 						});
 						client.close();
 					}
