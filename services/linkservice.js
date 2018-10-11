@@ -13,6 +13,7 @@ module.exports = {
 				const discrim = reaction.users.map(r => r.discriminator)
 				const user = name[name.length-1] + '#' + discrim[discrim.length-1]
 				const messageid = reaction.users.map(r => r.lastMessageID);
+				console.log(reaction.message);
 				global.MongoClient.connect(global.uri, function(err, client) {
 					if (err) {
 						console.error('An error occurred connecting to MongoDB: ', err);
@@ -25,9 +26,9 @@ module.exports = {
 							let embed = new Discord.RichEmbed()
 							.setColor(0x0000FF)
 							.setTitle(user)
-							.addField('Party invite', notes)
+							.addField('Party invite', result[result.length-1].notes)
 							.setFooter('React with 🔗 to get the link.')
-							reaction.channel.fetchMessage(messageid).then(message =>message.edit({embed})
+							reaction.channel.fetchMessage(messageid).then(message =>message.edit({embed});        
 						});
 						client.close();
 					}
