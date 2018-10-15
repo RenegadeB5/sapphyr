@@ -11,7 +11,6 @@ module.exports = {
 				const name = reaction.users.map(r => r.username)
 				const discrim = reaction.users.map(r => r.discriminator)
 				const user = name[name.length-1] + '#' + discrim[discrim.length-1]
-				const messageid = reaction.users.map(r => r.lastMessageID);
 				const list = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0]
 				const members = list[1, list.length-1]
 				if (dmsend === '407593823921766410') return;
