@@ -6,8 +6,8 @@ module.exports = {
 	on: {
 		messageReactionAdd: async function (reaction) {
 			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '498736242905710592') {
-				console.log(reaction.count());
 				const user = reaction.users.map(r => r.id);
+				console.log(user.length());
 				const userid = user[user.length-1];
 				const name = reaction.users.map(r => r.username)
 				const discrim = reaction.users.map(r => r.discriminator)
