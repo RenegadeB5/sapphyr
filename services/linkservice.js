@@ -5,11 +5,11 @@ module.exports = {
 	type: "event",
 	on: {
 		messageReactionAdd: async function (reaction) {
-			const user = reaction.users.map(r => r.id);
-			const userid = user[user.length-1];
-			const name = reaction.users.map(r => r.username)
-			const discrim = reaction.users.map(r => r.discriminator)
-			const username = name[name.length-1] + '#' + discrim[discrim.length-1]
+			let user = reaction.users.map(r => r.id);
+			let userid = user[user.length-1];
+			let name = reaction.users.map(r => r.username)
+			let discrim = reaction.users.map(r => r.discriminator)
+			let username = name[name.length-1] + '#' + discrim[discrim.length-1]
 			if(reaction.emoji.name === '⚠' && reaction.message.channel.id === '498736242905710592') {
 				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '⚠').count >= 2) {
 					global.client.users.get(userid).send('Staff have already been notifed of the troll and have aready begun, or will begin their investigation soon.');
@@ -26,11 +26,10 @@ module.exports = {
 			}
 			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '498736242905710592') {
 				if (userid === '407593823921766410') return;
-				const list = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0]
-				const members = list[1, list.length-1]
-				const query = { name: username };
-				const result = await global.client.datahandler.fetchLink(query)
-				console.log(result);
+				let list = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0]
+				let members = list[1, list.length-1]
+				let query = { name: username }
+				let result = await global.client.datahandler.fetchLink(query)
 				if (result[result.length-1] === undefined) {
 					global.client.users.get(userid).send('Sorry, this invite link is no longer avalable.');
 					reaction.message.delete();
