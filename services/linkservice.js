@@ -30,7 +30,7 @@ module.exports = {
 				if (userid === '407593823921766410') return;
 				const query = { name: username };
 				console.log(await global.client.datahandler.fetchLink(query));
-				await global.client.datahandler.fetchLink(query).toArray(function(err, result) {
+				await global.client.datahandler.fetchLink(query).then(function(err, result) {
 					if (result[result.length-1] === undefined) {
 						global.client.users.get(userid).send('Sorry, this invite link is no longer avalable.');
 						reaction.message.delete();
