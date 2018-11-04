@@ -5,7 +5,6 @@ var MongoClient = require('mongodb').MongoClient;
 var MongoDBProvider = require('mongodb');
 var { initializeServices, services } = require("./services");
 var password = process.env.dbpassword;
-var utils = require("./utils");
 
 var client = new commando.Client({
 	owner: config.bot.owners,
@@ -19,16 +18,11 @@ client
 	.on("ready", async () => {
 		console.log(`Logged in as ${client.user.tag} (${client.user.id})`);
 		client.user.setActivity("with sapphires!");
-		// Initialize datahandler
-		client.datahandler = new utils.datahandler();
-		await client.datahandler.initialize();
-		console.log("Datahandler initialized.");
 		// Initialize services
 		await initializeServices(client);
 		console.log("Services initialized.");
 		// Attach to global object
 		global.services = services;
-		global.utils = utils;
 		console.log("Global variables initialized.");
 		// Register commands, groups and types
 		client.registry.registerDefaultTypes();
@@ -66,7 +60,6 @@ client
 
 client.login(process.env.BOT_TOKEN);
 initializeServices(client);
-global.services = services;
 global.client = client;
 global.MongoClient = MongoClient;
 global.MongoDBProvider = MongoDBProvider;
