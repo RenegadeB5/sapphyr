@@ -2,6 +2,7 @@ var fs = require("fs");
 var regex = require("/app/links.json");
 var diepregex = RegExp(regex.diep);
 var Discord = require('discord.js');
+var dataHandler = global.utils.datahandler();
 module.exports = {
 	name: "Link detection service",
 	description: "Creates an embed for party invites.",
@@ -11,7 +12,6 @@ module.exports = {
 			let notes = message.content.split(" ");
 			let args = notes.slice(0);
 			if (message.author.bot) return;
-			if (message.channel.type === "dm") return;
 			if (diepregex.test(args[0])) {
 				function clearLink () {
   					console.log("1 link cleared");
