@@ -5,8 +5,10 @@ module.exports = {
 	type: "event",
 	on: {
 		messageReactionAdd: async function (reaction) {
-			if(reaction.message.reactions.find(reaction => reaction.emoji.name === '☠').count === 2 && reaction.message.channel.id === '498736242905710592') {
-				reaction.message.delete();
+			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '498736242905710592') {
+				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '☠').count === 2) {
+					reaction.message.delete();
+				}
 			}
 			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '498736242905710592') {
 				const user = reaction.users.map(r => r.id);
