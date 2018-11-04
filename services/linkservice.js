@@ -29,17 +29,18 @@ module.exports = {
 								reaction.message.delete();
 							}
 							else {
-								switch (members) {
-									case username:
-									default:
-										global.client.users.get(userid).send(result[result.length-1].link);
-										let embed = new Discord.RichEmbed()
-										.setColor(0x0000FF)
-										.setTitle(username)
-										.addField('Party invite', result[result.length-1].notes)
-										.addField('Members', members + '\n' + username)
-										.setFooter('React with 🔗 to get the link.')
-										reaction.message.edit({embed});  
+								if (members.includes(username) === 'true') {
+									return;
+								}
+								else {
+									global.client.users.get(userid).send(result[result.length-1].link);
+									let embed = new Discord.RichEmbed()
+									.setColor(0x0000FF)
+									.setTitle(username)
+									.addField('Party invite', result[result.length-1].notes)
+									.addField('Members', members + '\n' + username)
+									.setFooter('React with 🔗 to get the link.')
+									reaction.message.edit({embed});  
 								}
 							}
 						});
