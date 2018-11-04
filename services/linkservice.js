@@ -50,7 +50,7 @@ module.exports = {
 							reaction.message.edit({embed});  
 						}
 					}
-				});
+				
 			}
 		}
 	}
