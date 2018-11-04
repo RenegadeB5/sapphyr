@@ -70,4 +70,5 @@ client.login(process.env.BOT_TOKEN);
 global.client = client;
 global.MongoClient = MongoClient;
 global.MongoDBProvider = MongoDBProvider;
+global.password = password;
 global.uri = "mongodb+srv://RenegadeB5:" + password + "@cluster0-l1qqw.mongodb.net/test?retryWrites=true";
