@@ -3,7 +3,6 @@ const { Command } = require("discord.js-commando");
 const datahandler = require("./datahandler.js");
 const guildDatahandler = require("./guildDatahandler.js");
 const nadekoConnector = require("./nadekoConnector.js");
-const log = require("fancy-log");
 
 module.exports = class BaseCommand extends Command {
     constructor(client, commandInfo) {
