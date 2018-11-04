@@ -36,7 +36,7 @@ module.exports = {
 				if (notes.length < 1) {
 					notes = 'No informtion provided.'
 				}
-				let linkchannel = client.channels.get('448984516078600203')
+				let linkchannel = client.channels.get('498736242905710592')
  				let embed = new Discord.RichEmbed()
 				.setColor(0x0000FF)
 				.setTitle(message.member.user.tag)
