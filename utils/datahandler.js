@@ -73,6 +73,14 @@ class dataHandler {
             return await guilds.updateOne({ id: guild.id }, { $unset: settings });
         return await guilds.updateOne({ id: guild.id }, { $set: settings });
     }
+    async insertLink(insert) {
+        let links = await this.db.collection("partylinks");
+        return await links.insertOne({insert});
+    }
+    async remove1Link() {
+        let links = await this.db.collection("partylinks");
+        return await links.findOneAndDelete({});
+    }
 }
 
 module.exports = dataHandler;
