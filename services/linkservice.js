@@ -25,12 +25,12 @@ module.exports = {
 				}
 			}
 			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '498736242905710592') {
+				if (userid === '407593823921766410') return;
 				const list = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0]
 				const members = list[1, list.length-1]
-				if (userid === '407593823921766410') return;
 				const query = { name: username };
-				console.log(await global.client.datahandler.fetchLink(query));
-				let result = global.client.datahandler.fetchLink(query)
+				const result = await global.client.datahandler.fetchLink(query)
+				console.log(result);
 				if (result[result.length-1] === undefined) {
 					global.client.users.get(userid).send('Sorry, this invite link is no longer avalable.');
 					reaction.message.delete();
