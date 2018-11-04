@@ -2,6 +2,7 @@ var fs = require("fs");
 var regex = require("/app/links.json");
 var diepregex = RegExp(regex.diep);
 var Discord = require('discord.js');
+var dataHandler = global.client.datahandler();
 module.exports = {
 	name: "Link detection service",
 	description: "Creates an embed for party invites.",
