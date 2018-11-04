@@ -5,6 +5,7 @@ var MongoClient = require('mongodb').MongoClient;
 var MongoDBProvider = require('mongodb');
 var { initializeServices, services } = require("./services");
 var password = process.env.dbpassword;
+var utils = require("./utils");
 
 var client = new commando.Client({
 	owner: config.bot.owners,
