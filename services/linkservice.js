@@ -5,14 +5,22 @@ module.exports = {
 	type: "event",
 	on: {
 		messageReactionAdd: async function (reaction) {
+			const user = reaction.users.map(r => r.id);
+			const userid = user[user.length-1];
+			if(reaction.emoji.name === '⚠' && reaction.message.channel.id === '498736242905710592') {
+				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '⚠').count === 2) {
+					global.client.users.get(userid).send('Staff have already been notifed of the troll and have aready begun, or will begin their investigation soon.');
+				}
+				else {
+					global.client.users.get(userid).send('Staff have been notifed that the link reported has a troll present, they will begin their investigation shortly. Thank you.');
+				}
+			}		
 			if(reaction.emoji.name === '☠' && reaction.message.channel.id === '498736242905710592') {
 				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '☠').count === 2) {
 					reaction.message.delete();
 				}
 			}
 			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '498736242905710592') {
-				const user = reaction.users.map(r => r.id);
-				const userid = user[user.length-1];
 				const name = reaction.users.map(r => r.username)
 				const discrim = reaction.users.map(r => r.discriminator)
 				const username = name[name.length-1] + '#' + discrim[discrim.length-1]
