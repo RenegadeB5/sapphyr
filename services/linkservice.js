@@ -11,7 +11,7 @@ module.exports = {
 			const discrim = reaction.users.map(r => r.discriminator)
 			const username = name[name.length-1] + '#' + discrim[discrim.length-1]
 			if(reaction.emoji.name === '⚠' && reaction.message.channel.id === '498736242905710592') {
-				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '⚠').count === 2) {
+				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '⚠').count >= 2) {
 					global.client.users.get(userid).send('Staff have already been notifed of the troll and have aready begun, or will begin their investigation soon.');
 				}
 				else {
@@ -20,7 +20,7 @@ module.exports = {
 				}
 			}		
 			if(reaction.emoji.name === '☠' && reaction.message.channel.id === '498736242905710592') {
-				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '☠').count === 2) {
+				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '☠').count >= 3) {
 					reaction.message.delete();
 				}
 			}
