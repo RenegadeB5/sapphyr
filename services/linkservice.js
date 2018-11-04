@@ -7,12 +7,16 @@ module.exports = {
 		messageReactionAdd: async function (reaction) {
 			const user = reaction.users.map(r => r.id);
 			const userid = user[user.length-1];
+			const name = reaction.users.map(r => r.username)
+			const discrim = reaction.users.map(r => r.discriminator)
+			const username = name[name.length-1] + '#' + discrim[discrim.length-1]
 			if(reaction.emoji.name === '⚠' && reaction.message.channel.id === '498736242905710592') {
 				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '⚠').count === 2) {
 					global.client.users.get(userid).send('Staff have already been notifed of the troll and have aready begun, or will begin their investigation soon.');
 				}
 				else {
-					global.client.users.get(userid).send('Staff have been notifed that the link reported has a troll present, they will begin their investigation shortly. Thank you.');
+					global.client.users.get(userid).send('Staff have been notifed that the link reported has a troll present, and they will begin their investigation shortly. Thank you.');
+					global.client.channels.get('508480280038866949').send('The link created by' + ' ' + username + ' ' + 'has been reported for having a troller present.');
 				}
 			}		
 			if(reaction.emoji.name === '☠' && reaction.message.channel.id === '498736242905710592') {
@@ -21,9 +25,6 @@ module.exports = {
 				}
 			}
 			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '498736242905710592') {
-				const name = reaction.users.map(r => r.username)
-				const discrim = reaction.users.map(r => r.discriminator)
-				const username = name[name.length-1] + '#' + discrim[discrim.length-1]
 				const list = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0]
 				const members = list[1, list.length-1]
 				if (userid === '407593823921766410') return;
