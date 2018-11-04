@@ -14,6 +14,7 @@ module.exports = {
 				const username = name[name.length-1] + '#' + discrim[discrim.length-1]
 				const list = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0]
 				const members = list[1, list.length-1]
+				console.log(members.includes(username));
 				if (userid === '407593823921766410') return;
 				global.MongoClient.connect(global.uri, function(err, client) {
 					if (err) {
