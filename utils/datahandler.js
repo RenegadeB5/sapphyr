@@ -76,7 +76,7 @@ class dataHandler {
     async insertLink(insert) {
         let links = await this.db.collection("partylinks");
         console.log(insert);
-        return await links.insertOne({insert});
+        links.insertOne({insert});
     }
     async remove1Link() {
         let links = await this.db.collection("partylinks");
