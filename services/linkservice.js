@@ -44,7 +44,7 @@ module.exports = {
 									.setTitle(username)
 									.addField('Party invite', result[result.length-1].notes)
 									.addField('Members', members + '\n' + username)
-									.setFooter('React with 🔗 to get the link.')
+									.setFooter('React with 🔗 to recieve the link, \nReact with ☠ if the link is invalid, \n And react with ⚠ if there is a troller present. \n Be aware that false alarms are punishable.')                  
 									reaction.message.edit({embed});  
 								}
 							}
