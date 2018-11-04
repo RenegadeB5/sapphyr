@@ -14,19 +14,8 @@ module.exports = {
 			if (message.channel.type === "dm") return;
 			if (diepregex.test(args[0])) {
 				function clearLink () {
-					global.MongoClient.connect(global.uri, function(err, client) {
-						if (err) {
-							console.error('An error occurred connecting to MongoDB: ', err);
-						}
-						else {
-							const collection = client.db("partylinks").collection("links");
-							collection.findOneAndDelete({}, function(err, obj) {
-								if (err) throw err;
-  								console.log("1 link cleared" + obj);
-							});
-							client.close();
-						}
-					});
+  					console.log("1 link cleared");
+					new dataHandler().remove1Link();
 				}
 				let link = args[0];
 				if (link.substr(0, 8) !== 'https://') {
@@ -43,24 +32,13 @@ module.exports = {
 				.addField('Party invite', notes)
 				.addField('Members', message.member.user.tag)
 				.setFooter('React with 🔗 to recieve the link, \nReact with ☠ if the link is invalid, \n And react with ⚠ if there is a troller present. \n Be aware that false alarms are punishable.')
-				global.MongoClient.connect(global.uri, function(err, client) {
-					if (err) {
-						console.error('An error occurred connecting to MongoDB: ', err);
-					}
-					else {
-						const insert = { name: message.member.user.tag, notes: notes, link: link };
-						const collection = client.db("partylinks").collection("links");
-						collection.insertOne(insert, function(err, res) {
-							if (err) throw err;
-							message.delete();
-							console.log("link added to db");
-							linkchannel.send({embed}).then(function (message) {message.react('🔗')});
-							message.channel.send('Your link has successfully been posted.').then(message => {message.delete(5000)});
-							setTimeout(clearLink, 3600000);
-						});
-						client.close();
-					}
-				});
+				const insert = { name: message.member.user.tag, notes: notes, link: link };
+				new dataHandler().insertLink(insert);
+				message.delete();
+				console.log("link added to db");
+				linkchannel.send({embed}).then(function (message) {message.react('🔗')});
+				message.channel.send('Your link has successfully been posted.').then(message => {message.delete(5000)});
+				setTimeout(clearLink, 3600000);
 			}
 		}
 	}
