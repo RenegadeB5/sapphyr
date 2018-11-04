@@ -80,7 +80,7 @@ class dataHandler {
     async fetchLink(query) {
         let links = await this.db.collection("partylinks");
         await links.find(query).toArray(function(err, result) {
-            return result;
+            console.log(result);
         });
     }
     async remove1Link() {
