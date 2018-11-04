@@ -34,8 +34,7 @@ module.exports = {
 					}
 					else {
 						const query = { name: username };
-						const collection = client.db("partylinks").collection("links");
-						collection.find(query).toArray(function(err, result) {
+						global.client.datahandler.fethcLink(query).toArray(function(err, result) {
 							if (result[result.length-1] === undefined) {
 								global.client.users.get(userid).send('Sorry, this invite link is no longer avalable.');
 								reaction.message.delete();
@@ -55,10 +54,7 @@ module.exports = {
 									reaction.message.edit({embed});  
 								}
 							}
-						});
-						client.close();
-					}
-				});
+						}
 			}
 		}
 	}
