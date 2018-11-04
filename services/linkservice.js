@@ -29,7 +29,7 @@ module.exports = {
 								reaction.message.delete();
 							}
 							else {
-								if (members.includes(username) === 'true') {
+								if (members.includes(username) === true) {
 									return;
 								}
 								else {
