@@ -5,7 +5,7 @@ module.exports = {
 	type: "event",
 	on: {
 		messageReactionAdd: async function (reaction) {
-			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '498736242905710592') {
+			if(reaction.emoji.name === '☠' && reaction.message.channel.id === '498736242905710592') {
 				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '☠').count === 2) {
 					reaction.message.delete();
 				}
