@@ -54,7 +54,7 @@ module.exports = {
 							if (err) throw err;
 							message.delete();
 							console.log("link added to db");
-							linkchannel.send({embed}).then(function (message) {message.react('🔗')});
+							linkchannel.send({embed}).then(function (message) {message.react('🔗') & message.react'☠'});
 							message.channel.send('Your link has successfully been posted.').then(message => {message.delete(5000)});
 							setTimeout(clearLink, 3600000);
 						});
