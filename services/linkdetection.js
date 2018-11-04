@@ -13,7 +13,7 @@ module.exports = {
 			if (message.author.bot) return;
 			if (diepregex.test(args[0])) {
 				function clearLink () {
-					await global.client.datahandler.remove1Link();
+					global.client.datahandler.remove1Link();
 				}
 				let link = args[0];
 				if (link.substr(0, 8) !== 'https://') {
