@@ -32,7 +32,7 @@ module.exports = {
 				.addField('Members', message.member.user.tag)
 				.setFooter('React with 🔗 to recieve the link, \nReact with ☠ if the link is invalid, \n And react with ⚠ if there is a troller present. \n Be aware that false alarms are punishable.')
 				const insert = { name: message.member.user.tag, notes: notes, link: link };
-				await global.client.dataHandler.insertLink(insert);
+				await global.client.datahandler.insertLink(insert);
 				message.delete();
 				console.log("link added to db");
 				linkchannel.send({embed}).then(function (message) {message.react('🔗')});
