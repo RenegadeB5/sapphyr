@@ -10,22 +10,22 @@ module.exports = {
 			let name = reaction.users.map(r => r.username)
 			let discrim = reaction.users.map(r => r.discriminator)
 			let username = name[name.length-1] + '#' + discrim[discrim.length-1]
-			if(reaction.emoji.name === '⚠' && reaction.message.channel.id === '498736242905710592') {
+			if(reaction.emoji.name === '⚠' && reaction.message.channel.id === '508478089072738314') {
 				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '⚠').count >= 2) {
 					global.client.users.get(userid).send('Staff have already been notifed of the troll and have aready begun, or will begin their investigation soon.');
 				}
 				else {
 					global.client.users.get(userid).send('Staff have been notifed that the link reported has a troll present, and they will begin their investigation shortly. Thank you.');
-					global.client.channels.get('508480280038866949').send('The link created by' + ' ' + username + ' ' + 'has been reported for having a troller present.');
+					global.client.channels.get('477644168299151375').send('The link created by' + ' ' + username + ' ' + 'has been reported for having a troller present.');
 				}
 			}		
-			if(reaction.emoji.name === '☠' && reaction.message.channel.id === '498736242905710592') {
+			if(reaction.emoji.name === '☠' && reaction.message.channel.id === '508478089072738314') {
 				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '☠').count >= 3) {
 					reaction.message.delete();
 				}
 			}
-			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '498736242905710592') {
-				if (userid === '407593823921766410') return;
+			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '508478089072738314') {
+				if (userid === '468507221052096522') return;
 				let list = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0]
 				let members = list[1, list.length-1]
 				let query = { name: username }
