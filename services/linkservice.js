@@ -20,7 +20,7 @@ module.exports = {
 						console.error('An error occurred connecting to MongoDB: ', err);
 					}
 					else {
-						const query = { name: user };
+						const query = { name: username };
 						const collection = client.db("partylinks").collection("links");
 						collection.find(query).toArray(function(err, result) {
 							if (result[result.length-1] === undefined) {
