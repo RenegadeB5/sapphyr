@@ -29,11 +29,11 @@ module.exports = {
 								reaction.message.delete();
 							}
 							else {
+								global.client.users.get(userid).send(result[result.length-1].link);
 								if (members.includes(username) === true) {
 									return;
 								}
 								else {
-									global.client.users.get(userid).send(result[result.length-1].link);
 									let embed = new Discord.RichEmbed()
 									.setColor(0x0000FF)
 									.setTitle(username)
