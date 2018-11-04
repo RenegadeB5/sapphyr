@@ -5,6 +5,9 @@ module.exports = {
 	type: "event",
 	on: {
 		messageReactionAdd: async function (reaction) {
+			if(reaction.message.reactions.find(reaction => reaction.emoji.name === '☠').count === 2 && reaction.message.channel.id === '498736242905710592') {
+				reaction.message.delete();
+			}
 			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '498736242905710592') {
 				const user = reaction.users.map(r => r.id);
 				console.log(reaction.message.reactions.find(reaction => reaction.emoji.name === '🔗').count);
@@ -29,7 +32,7 @@ module.exports = {
 								reaction.message.delete();
 							}
 							else {
-								global.client.users.get(userid).send(result[result.length-1].link);
+								global.client.users.get(userid).send(result[result.length-1].link + '\nNotes:' + ' ' + result[result.length-1].notes);               
 								if (members.includes(username) === true) {
 									return;
 								}
