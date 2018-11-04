@@ -67,7 +67,6 @@ client
 	});
 
 client.login(process.env.BOT_TOKEN);
-initializeServices(client);
 global.client = client;
 global.MongoClient = MongoClient;
 global.MongoDBProvider = MongoDBProvider;
