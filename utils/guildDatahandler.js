@@ -30,6 +30,11 @@ module.exports = class guildDataHandler {
         await this.datahandler.editGuild(this.guild, data);
         return await this.reload();
     }
+    
+    async purgeLinks() {
+        let links = await this.db.collection("partylinks");
+        links.deleteMany({});
+    }
 
     async remove(setting) {
         let data = {};
