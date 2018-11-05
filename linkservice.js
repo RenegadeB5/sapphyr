@@ -25,18 +25,20 @@ module.exports = {
 				}
 			}
 			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '508478089072738314') {
-				if (userid === '468507221052096522') return;
+				if (userid === '507323447920033823') return;
 				let list = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0]
 				let members = list[1, list.length-1]
-				let query = { name: username }
+				let query = { name: username}
 				async function sendLink() {
 					let result = await global.client.datahandler.fetchLink(query);
+					let notes = result[result.length-1].notes;
 					if (result[result.length-1] === undefined) {
 						global.client.users.get(userid).send('Sorry, this invite link is no longer avalable.');
+						console.log(result);
 						reaction.message.delete();
 					}
 					else {
-						global.client.users.get(userid).send(result[result.length-1].link + '\nNotes:' + ' ' + result[result.length-1].notes);               
+						global.client.users.get(userid).send(result[result.length-1].link + '\nNotes:' + ' ' + notes);               
 						if (members.includes(username) === true) {
 							return;
 						}
@@ -44,13 +46,13 @@ module.exports = {
 							let embed = new Discord.RichEmbed()
 							.setColor(0x0000FF)
 							.setTitle(username)
-							.addField('Party invite', result[result.length-1].notes)
+							.addField('Party invite', notes)
 							.addField('Members', members + '\n' + username)
 							.setFooter('React with 🔗 to recieve the link, \nReact with ☠ if the link is invalid, \n And react with ⚠ if there is a troller present. \n Be aware that false alarms are punishable.')                  
 							reaction.message.edit({embed});  
 						}
 					}
-				}
+				} 
 				sendLink();
 			}
 		}
