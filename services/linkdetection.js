@@ -31,7 +31,7 @@ module.exports = {
 				.addField('Party invite', notes)
 				.addField('Members', message.member.user.tag)
 				.setFooter('React with 🔗 to recieve the link,\nReact with ☠ if the link is invalid, \nAnd react with ⚠ if there is a troller present. \nBe aware that false alarms are punishable.')
-				await global.client.datahandler.insertLink(insert);
+				global.client.datahandler.insertLink(insert);
 				message.delete(1000);
 				linkchannel.send({embed}).then(function (message) {message.react('🔗')});
 				message.channel.send('Your link has successfully been posted.').then(message => {message.delete(5000)});
