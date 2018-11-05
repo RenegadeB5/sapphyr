@@ -7,9 +7,9 @@ module.exports = {
 		messageReactionAdd: async function (reaction) {
 			let user = reaction.users.map(r => r.id);
 			let userid = user[user.length-1];
-			let name = reaction.users.map(r => r.username)
-			let discrim = reaction.users.map(r => r.discriminator)
-			let username = name[name.length-1] + '#' + discrim[discrim.length-1]
+			let name = reaction.users.map(r => r.username);
+			let discrim = reaction.users.map(r => r.discriminator);
+			let username = name[name.length-1] + '#' + discrim[discrim.length-1];
 			if(reaction.emoji.name === '⚠' && reaction.message.channel.id === '508478089072738314') {
 				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '⚠').count >= 2) {
 					global.client.users.get(userid).send('Staff have already been notifed of the troll and have aready begun, or will begin their investigation soon.');
@@ -26,9 +26,9 @@ module.exports = {
 			}
 			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '508478089072738314') {
 				if (userid === '507323447920033823') return;
-				let list = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0]
-				let members = list[1, list.length-1]
-				let query = { name: username}
+				let list = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0];
+				let members = list[1, list.length-1];
+				let query = { name: username};
 				async function sendLink() {
 					let result = await global.client.datahandler.fetchLink(query);
 					let notes = result[result.length-1].notes;
