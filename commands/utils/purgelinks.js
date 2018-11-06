@@ -2,23 +2,15 @@ var { Command } = require("discord.js-commando");
 module.exports = class SaveDataCommand extends global.utils.baseCommand {
     constructor(client) {
         super(client, {
-            name: "removedata",
-            description: "Removes stored data",
+            name: "purgelinks",
+            description: "Purges the party links collection completely.",
             group: "utils",
-            memberName: "removedata",
-            args: [
-                {
-                    key: "key",
-                    prompt: "Key that the data was stored under",
-                    type: "string",
-                    default: "data"
-                }
-            ]
+            memberName: "purgelinks",
         });
     }
 
     async task(ctx) {
-        let data = await ctx.db.remove(ctx.args.key);
-        await ctx.message.channel.send("Data successfully removed!");
+        let data = await ctx.db.remove("linkdetection");
+        await ctx.message.channel.send("Partylinks has successfully been purged!");
     }
 };
