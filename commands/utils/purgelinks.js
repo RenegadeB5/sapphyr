@@ -6,6 +6,7 @@ module.exports = class SaveDataCommand extends global.utils.baseCommand {
             description: "Purges the party links collection completely.",
             group: "utils",
             memberName: "purgelinks",
+            userPermissions: ['ADMINISTRATOR']
         });
     }
 
