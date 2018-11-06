@@ -1,3 +1,7 @@
+
+var fs = require("fs");
+var regex = require("/app/links.json");
+var diepregex = RegExp(regex.diep);
 var Discord = require('discord.js');
 module.exports = {
 	name: "Link sending service",
