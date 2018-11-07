@@ -30,14 +30,14 @@ module.exports = {
 				let members = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0].slice(-1)[0];
 				let query = { name: username };
 				async function sendLink() {
-					let result = await global.client.datahandler.fetchLink(query).slice(-1)[0];
+					let result = await global.client.datahandler.fetchLink(query);
 					if (result[result.length-1] === undefined) {
 						global.client.users.get(userid).send('Sorry, this invite link is no longer avalable.');
 						reaction.message.delete();
 					}
 					else {
-						let notes = result.notes;
-						global.client.users.get(userid).send(result[result.length-1].link + '\nNotes:' + ' ' + notes);               
+						let notes = result.slice(-1)[0].notes;
+						global.client.users.get(userid).send(result.slice(-1)[0].link + '\nNotes:' + ' ' + notes);               
 						if (members.includes(username)) return;
 						let embed = new Discord.RichEmbed()
 						.setColor(0x0000FF)
