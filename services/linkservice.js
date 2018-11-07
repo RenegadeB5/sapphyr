@@ -74,7 +74,7 @@ module.exports = {
 				.setFooter('React with 🔗 to recieve the link,\nReact with ☠ if the link is invalid, \nAnd react with ⚠ if there is a troller present. \nBe aware that false alarms are punishable.');
 				client.channels.get('498736242905710592').send({embed}).then(function (message) {message.react('🔗')});
 				global.client.datahandler.insertLink(insert);
-				message.delete();
+				message.delete(300);
 				message.channel.send('Your link has successfully been posted.').then(message => {message.delete(5000)});
 				setTimeout(clearLink, 3600000);
 			}
