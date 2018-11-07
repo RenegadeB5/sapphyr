@@ -36,8 +36,8 @@ module.exports = {
 						reaction.message.delete();
 					}
 					else {
-						let notes = result.slice(-1)[0].notes;
-						global.client.users.get(userid).send(result.slice(-1)[0].link + '\nNotes:' + ' ' + notes);               
+						let notes = result.notes;
+						global.client.users.get(userid).send(result.link + '\nNotes:' + ' ' + notes);               
 						if (members.includes(username)) return;
 						let embed = new Discord.RichEmbed()
 						.setColor(0x0000FF)
