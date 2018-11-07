@@ -29,7 +29,7 @@ module.exports = {
 				let members = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0].slice(-1)[0];
 				let query = { name: username };
 				async function sendLink() {
-					let result = await global.client.datahandler.fetchLink(query);
+					let result = await global.client.datahandler.fetchLink(query)[0];
 					if (!result) {
 						global.client.users.get(userid).send('Sorry, this invite link is no longer avalable.');
 						reaction.message.delete();
