@@ -9,11 +9,8 @@ module.exports = {
 	type: "event",
 	on: {
 		messageReactionAdd: async function (reaction) {
-			let user = reaction.users.map(r => r.id);
-			let userid = user[user.length-1];
-			let name = reaction.users.map(r => r.username);
-			let discrim = reaction.users.map(r => r.discriminator);
-			let username = name[name.length-1] + '#' + discrim[discrim.length-1];
+			let userid = reaction.users.map(r => r.id).slice(-1)[0];
+			let username = reaction.users.map(r => r.username).slice(-1)[0] + '#' + reaction.users.map(r => r.discriminator).slice(-1)[0];
 			if(reaction.emoji.name === '⚠' && reaction.message.channel.id === '498736242905710592') {
 				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '⚠').count >= 2) {
 					global.client.users.get(userid).send('Staff have already been notifed of the troll and have aready begun, or will begin their investigation soon.');
@@ -30,17 +27,16 @@ module.exports = {
 			}
 			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '498736242905710592') {
 				if (userid === '407593823921766410') return;
-				let list = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0];
-				let members = list[1, list.length-1];
+				let members = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0].slice(-1)[0];
 				let query = { name: username };
 				async function sendLink() {
-					let result = await global.client.datahandler.fetchLink(query);
+					let result = await global.client.datahandler.fetchLink(query).slice(-1)[0];
 					if (result[result.length-1] === undefined) {
 						global.client.users.get(userid).send('Sorry, this invite link is no longer avalable.');
 						reaction.message.delete();
 					}
 					else {
-						let notes = result[result.length-1].notes;
+						let notes = result.notes;
 						global.client.users.get(userid).send(result[result.length-1].link + '\nNotes:' + ' ' + notes);               
 						if (members.includes(username)) return;
 						let embed = new Discord.RichEmbed()
@@ -56,8 +52,7 @@ module.exports = {
 			}
 		},
 		message: async function (message) {
-			let notes = message.content.split(" ");
-			let args = notes.slice(0);
+			let args = message.content.split(" ").slice(0);
 			if (message.author.bot) return;
 			function clearLink () {
 					global.client.datahandler.remove1Link();
@@ -71,7 +66,6 @@ module.exports = {
 				if (notes.length < 1) {
 					notes = 'No informtion provided.'
 				}
-				let linkchannel = client.channels.get('498736242905710592');
 				let insert = { name: message.member.user.tag, notes: notes, link: link };
  				let embed = new Discord.RichEmbed()
 				.setColor(0x0000FF)
@@ -79,7 +73,7 @@ module.exports = {
 				.addField('Party invite', notes)
 				.addField('Members', message.member.user.tag)
 				.setFooter('React with 🔗 to recieve the link,\nReact with ☠ if the link is invalid, \nAnd react with ⚠ if there is a troller present. \nBe aware that false alarms are punishable.');
-				linkchannel.send({embed}).then(function (message) {message.react('🔗')});
+				client.channels.get('498736242905710592').send({embed}).then(function (message) {message.react('🔗')});
 				global.client.datahandler.insertLink(insert);
 				message.delete();
 				message.channel.send('Your link has successfully been posted.').then(message => {message.delete(5000)});
