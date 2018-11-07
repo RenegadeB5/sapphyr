@@ -86,6 +86,11 @@ class dataHandler {
         let links = await this.db.collection("partylinks");
         return await links.findOneAndDelete({});
     }
+    
+    async purgeLinks() {
+        let links = await this.db.collection("partylinks");
+        links.deleteMany({});
+    }
 }
 
 module.exports = dataHandler;
