@@ -11,7 +11,7 @@ module.exports = class SaveDataCommand extends global.utils.baseCommand {
     }
 
     async task(ctx) {
-        let data = await ctx.db.collection.remove("partylinks");
+        global.client.datahandler.purgeLinks();
         await ctx.message.channel.send("Partylinks has successfully been purged!");
     }
 };
