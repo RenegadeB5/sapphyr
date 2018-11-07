@@ -30,7 +30,7 @@ module.exports = {
 			}
 			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '498736242905710592') {
 				if (userid === '407593823921766410') return;
-				let list = reaction.message407593823921766410embeds.map(r => r.fields.map(r => r.value))[0];
+				let list = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0];
 				let members = list[1, list.length-1];
 				let query = { name: username };
 				async function sendLink() {
