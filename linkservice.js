@@ -1,15 +1,15 @@
+var fs = require("fs");
+var regex = require("/app/links.json");
+var diepregex = RegExp(regex.diep);
 var Discord = require('discord.js');
 module.exports = {
-	name: "Link sending service",
-	description: "When a user reacts with \"🔗\", they will be sent a party link.",
+	name: "Link service.",
+	description: "When a user reacts with \"🔗\", they will be sent the request link.",
 	type: "event",
 	on: {
 		messageReactionAdd: async function (reaction) {
-			let user = reaction.users.map(r => r.id);
-			let userid = user[user.length-1];
-			let name = reaction.users.map(r => r.username);
-			let discrim = reaction.users.map(r => r.discriminator);
-			let username = name[name.length-1] + '#' + discrim[discrim.length-1];
+			let userid = reaction.users.map(r => r.id).slice(-1)[0];
+			let username = reaction.users.map(r => r.username).slice(-1)[0] + '#' + reaction.users.map(r => r.discriminator).slice(-1)[0];
 			if(reaction.emoji.name === '⚠' && reaction.message.channel.id === '508478089072738314') {
 				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '⚠').count >= 2) {
 					global.client.users.get(userid).send('Staff have already been notifed of the troll and have aready begun, or will begin their investigation soon.');
@@ -26,32 +26,56 @@ module.exports = {
 			}
 			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '508478089072738314') {
 				if (userid === '507323447920033823') return;
-				let list = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0];
-				let members = list[1, list.length-1];
-				let query = { name: username};
+				let members = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0].slice(-1)[0];
+				let query = { name: username };
 				async function sendLink() {
 					let result = await global.client.datahandler.fetchLink(query);
-					let notes = result[result.length-1].notes;
-					if (result[result.length-1] === undefined) {
+					if (result[0] === undefined) {
 						global.client.users.get(userid).send('Sorry, this invite link is no longer avalable.');
-						console.log(result);
 						reaction.message.delete();
 					}
 					else {
-						global.client.users.get(userid).send(result[result.length-1].link + '\nNotes:' + ' ' + notes);               
+						global.client.users.get(userid).send(result[0].link + '\nNotes:' + ' ' + result[0].notes);               
 						if (members.includes(username)) return;
-						else {
-							let embed = new Discord.RichEmbed()
-							.setColor(0x0000FF)
-							.setTitle(username)
-							.addField('Party invite', notes)
-							.addField('Members', members + '\n' + username)
-							.setFooter('React with 🔗 to recieve the link, \nReact with ☠ if the link is invalid, \n And react with ⚠ if there is a troller present. \n Be aware that false alarms are punishable.');                 
-							reaction.message.edit({embed});  
-						}
+						let embed = new Discord.RichEmbed()
+						.setColor(0x0000FF)
+						.setTitle(username)
+						.addField('Party invite', result[0].notes)
+						.addField('Members', members + '\n' + username)
+						.setFooter('React with 🔗 to recieve the link, \nReact with ☠ if the link is invalid, \nAnd react with ⚠ if there is a troller present.');                
+						reaction.message.edit({embed});  
 					}
-				} 
+				}
 				sendLink();
+			}
+		},
+		message: async function (message) {
+			let args = message.content.split(" ").slice(0);
+			if (message.author.bot) return;
+			function clearLink () {
+					global.client.datahandler.remove1Link();
+				}
+			if (diepregex.test(args[0])) {
+				let link = args[0];
+				if (link.substr(0, 8) !== 'https://') {
+					link = 'https://' + args[0];
+				}
+				let notes = args.slice(1).join(" ");
+				if (notes.length < 1) {
+					notes = 'No informtion provided.'
+				}
+				let insert = { name: message.member.user.tag, notes: notes, link: link };
+ 				let embed = new Discord.RichEmbed()
+				.setColor(0x0000FF)
+				.setTitle(message.member.user.tag)
+				.addField('Party invite', notes)
+				.addField('Members', message.member.user.tag)
+				.setFooter('React with 🔗 to recieve the link,\nReact with ☠ if the link is invalid, \nAnd react with ⚠ if there is a troller present. \nBe aware that false alarms are punishable.');
+				client.channels.get('508478089072738314').send({embed}).then(function (message) {message.react('🔗')});
+				global.client.datahandler.insertLink(insert);
+				message.delete(300);
+				message.channel.send('Your link has successfully been posted.').then(message => {message.delete(5000)});
+				setTimeout(clearLink, 3600000);
 			}
 		}
 	}
