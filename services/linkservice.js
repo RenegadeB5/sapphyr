@@ -35,12 +35,12 @@ module.exports = {
 				let query = { name: username };
 				async function sendLink() {
 					let result = await global.client.datahandler.fetchLink(query);
-					let notes = result[result.length-1].notes;
 					if (result[result.length-1] === undefined) {
 						global.client.users.get(userid).send('Sorry, this invite link is no longer avalable.');
 						reaction.message.delete();
 					}
 					else {
+						let notes = result[result.length-1].notes;
 						global.client.users.get(userid).send(result[result.length-1].link + '\nNotes:' + ' ' + notes);               
 						if (members.includes(username)) return;
 						let embed = new Discord.RichEmbed()
