@@ -36,13 +36,12 @@ module.exports = {
 						reaction.message.delete();
 					}
 					else {
-						let notes = result.notes;
-						global.client.users.get(userid).send(result.link + '\nNotes:' + ' ' + notes);               
+						global.client.users.get(userid).send(result.link + '\nNotes:' + ' ' + result.notes);               
 						if (members.includes(username)) return;
 						let embed = new Discord.RichEmbed()
 						.setColor(0x0000FF)
 						.setTitle(username)
-						.addField('Party invite', notes)
+						.addField('Party invite', result.notes)
 						.addField('Members', members + '\n' + username)
 						.setFooter('React with 🔗 to recieve the link, \nReact with ☠ if the link is invalid, \nAnd react with ⚠ if there is a troller present.');                
 						reaction.message.edit({embed});  
