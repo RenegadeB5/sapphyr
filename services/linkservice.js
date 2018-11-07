@@ -1,4 +1,3 @@
-
 var fs = require("fs");
 var regex = require("/app/links.json");
 var diepregex = RegExp(regex.diep);
@@ -31,7 +30,7 @@ module.exports = {
 				let query = { name: username };
 				async function sendLink() {
 					let result = await global.client.datahandler.fetchLink(query);
-					if (result === undefined) {
+					if (result[result.length-1] === undefined) {
 						global.client.users.get(userid).send('Sorry, this invite link is no longer avalable.');
 						reaction.message.delete();
 					}
