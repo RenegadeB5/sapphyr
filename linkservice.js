@@ -4,7 +4,7 @@ var diepregex = RegExp(regex.diep);
 var Discord = require('discord.js');
 module.exports = {
 	name: "Link service.",
-	description: "When a user reacts with \"🔗\", they will be sent the request link.",
+	description: "When a user reacts with \"🔗\", they will be sent the requested link.",
 	type: "event",
 	on: {
 		messageReactionAdd: async function (reaction) {
