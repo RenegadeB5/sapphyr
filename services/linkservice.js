@@ -27,7 +27,7 @@ module.exports = {
 			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '498736242905710592') {
 				if (userid === '407593823921766410') return;
 				let members = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0].slice(-1)[0];
-				let query = { name: username, $orderby: {$natural : 1}};
+				let query = { name: username };
 				async function sendLink() {
 					let result = await global.client.datahandler.fetchLink(query);
 					console.log(result);
