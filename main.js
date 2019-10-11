@@ -19,7 +19,7 @@ var client = new commando.Client({
 client
 	.on("ready", async () => {
 		log(`Logged in as ${client.user.tag} (${client.user.id})`);
-		client.user.setActivity("with sapphires!");
+		client.user.setActivity("diep.io");
 		// Initialize datahandler
 		client.datahandler = new utils.datahandler();
 		await client.datahandler.initialize();
