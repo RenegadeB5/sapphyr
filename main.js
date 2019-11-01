@@ -8,6 +8,8 @@ const log = require("fancy-log");
 const password = process.env.dbpassword;
 var utils = require("./utils");
 
+console.log(client.users.get('113264551889244160').createdAT);
+
 var client = new commando.Client({
 	owner: config.owners,
 	commandEditableDuration: 0,
