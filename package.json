@@ -17,7 +17,6 @@
 		"got": "^9.2.2",
 		"json-bigint": "^0.3.0",
 		"jsonwebtoken": "^8.3.0",
-		"sharp": "^0.20.8",
 		"then-fs": "^2.0.0",
 		"mongodb": "^3.1.6",
 		"mongodb-core": "^3.1.5",
