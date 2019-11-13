@@ -10,7 +10,7 @@ module.exports = {
 		messageReactionAdd: async function (reaction) {
 			let userid = reaction.users.map(r => r.id).slice(-1)[0];
 			let username = reaction.users.map(r => r.username).slice(-1)[0] + '#' + reaction.users.map(r => r.discriminator).slice(-1)[0];
-			if(reaction.emoji.name === '⚠' && reaction.message.channel.id === '498736242905710592') {
+			if(reaction.emoji.name === '⚠' && reaction.message.channel.id === process.env.links) {
 				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '⚠').count >= 2) {
 					global.client.users.get(userid).send('Staff have already been notifed of the troll and have aready begun, or will begin their investigation soon.');
 				}
@@ -19,12 +19,12 @@ module.exports = {
 					global.client.channels.get('498736242905710592').send('The link created by' + ' ' + username + ' ' + 'has been reported for having a troller present.');
 				}
 			}		
-			if(reaction.emoji.name === '☠' && reaction.message.channel.id === '498736242905710592') {
+			if(reaction.emoji.name === '☠' && reaction.message.channel.id === process.env.links) {
 				if(reaction.message.reactions.find(reaction => reaction.emoji.name === '☠').count >= 3) {
 					reaction.message.delete();
 				}
 			}
-			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === '498736242905710592') {
+			if(reaction.emoji.name === '🔗' && reaction.message.channel.id === process.env.links) {
 				if (userid === '407593823921766410') return;
 				let members = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0].slice(-1)[0];
 				let query = { name: username };
@@ -53,8 +53,8 @@ module.exports = {
 			let args = message.content.split(" ").slice(0);
 			if (message.author.bot) return;
 			function clearLink () {
-					global.client.datahandler.remove1Link();
-				}
+				global.client.datahandler.remove1Link();
+			}
 			if (diepregex.test(args[0])) {
 				let link = args[0];
 				if (link.substr(0, 8) !== 'https://') {
@@ -71,7 +71,7 @@ module.exports = {
 				.addField('Party invite', notes)
 				.addField('Members', message.member.user.tag)
 				.setFooter('React with 🔗 to recieve the link,\nreact with ☠ if the link is invalid, \nand react with ⚠ if there is a troller present. \nBe aware that false alarms are punishable.');
-				client.channels.get('498736242905710592').send({embed}).then(function (message) {message.react('🔗')});
+				client.channels.get(process.env.links).send({embed}).then(function (message) {message.react('🔗')});
 				global.client.datahandler.insertLink(insert);
 				message.delete(300);
 				message.channel.send('Your link has successfully been posted.').then(message => {message.delete(5000)});
