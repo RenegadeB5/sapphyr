@@ -16,7 +16,7 @@ module.exports = {
 				}
 				else {
 					global.client.users.get(userid).send('Staff have been notifed that the link reported has a troll present, and they will begin their investigation shortly. Thank you.');
-					global.client.channels.get('498736242905710592').send('The link created by' + ' ' + username + ' ' + 'has been reported for having a troller present.');
+					global.client.channels.get(process.env.logs).send('The link created by' + ' ' + username + ' ' + 'has been reported for having a troller present.');
 				}
 			}		
 			if(reaction.emoji.name === '☠' && reaction.message.channel.id === process.env.links) {
