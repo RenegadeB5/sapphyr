@@ -36,16 +36,16 @@ module.exports = {
 					}
 					else {
 						global.client.users.get(userid).send(result[0].link + '\nNotes:' + ' ' + result[0].notes);               
-						//if (members.includes(username)) return;
+						if (members.includes(username)) return;
 						let embed = new Discord.RichEmbed()
 						.setColor(0x0000FF)
 						.setTitle(username)
 						.addField('Party invite', result[0].notes)
-						//.addField('Members', members + '\n' + username)
+						.addField('Members', members + '\n' + username)
 						.setFooter('React with 🔗 to recieve the link, \nReact with ☠ if the link is invalid, \nAnd react with ⚠ if there is a troller present.');                
 						reaction.message.edit({embed});  
 						if (members.includes(username)) return;
-						client.channels.get('644076043573133323').send('Link members: \n' + members + '\n' + username);
+						//client.channels.get('644076043573133323').send('Link members: \n' + members + '\n' + username);
 					}
 				}
 				sendLink();
