@@ -27,12 +27,12 @@ module.exports = {
 			if(reaction.emoji.name === '✅' && reaction.message.channel.id === process.env.links) {
 				if (userid === '407593823921766410') return;
 				let members = reaction.message.embeds.map(r => r.fields.map(r => r.value))[0].slice(-1)[0];
-				let query = { name: username };
+				let query = { name: reaction.message.embeds.map(r => r.fields.map(r => r.value))[0].slice(-1)[0].split(/\r?\n/)[0] };
 				async function sendLink() {
 					let result = await global.client.datahandler.fetchLink(query);
 					console.log(result);
 					console.log(username);
-					console.log(reaction.message.embeds.map(r => r.fields.map(r => r.value))[0].slice(-1)[0].split(/\r?\n/));
+					console.log(reaction.message.embeds.map(r => r.fields.map(r => r.value))[0].slice(-1)[0].split(/\r?\n/)[0]);
 					if (result[0] === undefined) {
 						global.client.users.get(userid).send('Sorry, this invite link is no longer avalable.');
 						reaction.message.delete();
