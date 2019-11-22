@@ -32,7 +32,7 @@ module.exports = {
 					let result = await global.client.datahandler.fetchLink(query);
 					console.log(result);
 					console.log(username);
-					console.log(reaction.users.map(r => r.username));
+					console.log(reaction.message.embeds.map(r => r.fields.map(r => r.value))[0].slice(-1)[0].split(/\r?\n/));
 					if (result[0] === undefined) {
 						global.client.users.get(userid).send('Sorry, this invite link is no longer avalable.');
 						reaction.message.delete();
