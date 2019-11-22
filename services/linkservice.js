@@ -44,8 +44,6 @@ module.exports = {
 						.addField('Members', members + '\n' + username)
 						.setFooter('React with ✅ to recieve the link, \nReact with ☠ if the link is invalid, \nAnd react with ⚠ if there is a troller present.');                
 						reaction.message.edit({embed});  
-						if (members.includes(username)) return;
-						//client.channels.get('644076043573133323').send('Link members: \n' + members + '\n' + username);
 					}
 				}
 				sendLink();
